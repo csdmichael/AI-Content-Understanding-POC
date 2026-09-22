@@ -129,4 +129,3 @@ class ContentSafetyClient:
         if status != 200:
             raise AzureServiceError(f"Unexpected Content Safety status {status}")
         return body.get("categoriesAnalysis", [])
-

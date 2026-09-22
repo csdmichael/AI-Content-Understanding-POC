@@ -90,4 +90,3 @@ class PurchaseOrderPipeline:
         if approved:
             result["fields"] = fields
         return result
-
