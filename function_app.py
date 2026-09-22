@@ -8,7 +8,7 @@ from poc.azure_clients import (
     ContentSafetyClient,
     ContentUnderstandingClient,
 )
-from poc.pipeline import PurchaseOrderPipeline, UploadedDocument
+from poc.pipeline import ALLOWED_THRESHOLDS, PurchaseOrderPipeline, UploadedDocument
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 
@@ -33,7 +33,7 @@ def _pipeline_from_settings() -> PurchaseOrderPipeline:
         threshold = int(os.environ.get("CONTENT_SAFETY_THRESHOLD", "2"))
     except ValueError as error:
         raise ValueError(
-            "CONTENT_SAFETY_THRESHOLD must be one of 0, 2, 4, or 6"
+            f"CONTENT_SAFETY_THRESHOLD must be one of {ALLOWED_THRESHOLDS}"
         ) from error
     return PurchaseOrderPipeline(understanding, safety, threshold)
 

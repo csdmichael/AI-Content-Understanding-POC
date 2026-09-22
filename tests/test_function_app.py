@@ -2,7 +2,7 @@ import io
 import json
 import os
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from function_app import _pipeline_from_settings, _uploads, purchase_orders
 
@@ -81,7 +81,7 @@ class FunctionTests(unittest.TestCase):
                 "files": FakeFiles([FakeFile("one.pdf", b"one")]),
             },
         )()
-        pipeline = unittest.mock.Mock()
+        pipeline = Mock()
         from poc.azure_clients import AzureServiceError
 
         pipeline.process.side_effect = AzureServiceError("private upstream response")

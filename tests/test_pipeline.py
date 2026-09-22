@@ -72,6 +72,24 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn("fields", result)
         self.assertFalse(result["safetyChecks"][0]["approved"])
 
+    def test_repeated_text_is_checked_once_but_reported_for_each_field(self):
+        safety = FakeSafety()
+        pipeline = PurchaseOrderPipeline(
+            FakeUnderstanding(
+                {
+                    "Vendor": {"valueString": "Contoso"},
+                    "BillTo": {"valueString": "Contoso"},
+                }
+            ),
+            safety,
+        )
+        result = pipeline.process(UploadedDocument("po.pdf", "application/pdf", b"pdf"))
+        self.assertEqual(safety.seen, ["Contoso"])
+        self.assertEqual(
+            [check["field"] for check in result["safetyChecks"]],
+            ["Vendor", "BillTo"],
+        )
+
     def test_invalid_threshold_is_rejected(self):
         with self.assertRaises(ValueError):
             PurchaseOrderPipeline(FakeUnderstanding({}), FakeSafety(), threshold=3)

@@ -3,6 +3,8 @@ from typing import Any
 
 from poc.azure_clients import ContentSafetyClient, ContentUnderstandingClient
 
+ALLOWED_THRESHOLDS = (0, 2, 4, 6)
+
 
 @dataclass(frozen=True)
 class UploadedDocument:
@@ -59,7 +61,7 @@ class PurchaseOrderPipeline:
         safety: ContentSafetyClient,
         threshold: int = 2,
     ):
-        if threshold not in (0, 2, 4, 6):
+        if threshold not in ALLOWED_THRESHOLDS:
             raise ValueError("Safety threshold must be one of 0, 2, 4, or 6")
         self.understanding = understanding
         self.safety = safety
@@ -72,8 +74,11 @@ class PurchaseOrderPipeline:
         fields = extract_fields(operation)
         checks = []
         approved = True
+        analyses_by_text = {}
         for path, text in _text_values(fields):
-            analyses = self.safety.analyze_text(text)
+            if text not in analyses_by_text:
+                analyses_by_text[text] = self.safety.analyze_text(text)
+            analyses = analyses_by_text[text]
             maximum = max(
                 (int(item.get("severity", 0)) for item in analyses), default=0
             )

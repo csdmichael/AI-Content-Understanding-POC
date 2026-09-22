@@ -65,8 +65,8 @@ curl -X POST "http://localhost:7071/api/purchase-orders" \
 
 The response is HTTP `200` when all documents pass and `422` when any document is
 blocked. Blocked document responses include category severities but omit extracted
-fields. Invalid input returns `400`/`415`; configuration or upstream failures return
-`502`, so the pipeline fails closed.
+fields. Invalid input returns `400`/`415`; invalid configuration returns `500`, and
+upstream failures return `502`, so the pipeline fails closed.
 
 ## Test
 

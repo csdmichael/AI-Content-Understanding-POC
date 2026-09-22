@@ -16,9 +16,8 @@ def _request_json(request: Request, timeout: float) -> tuple[int, dict, dict]:
             payload = response.read()
             return response.status, dict(response.headers), json.loads(payload or b"{}")
     except HTTPError as error:
-        detail = error.read().decode("utf-8", errors="replace")
         raise AzureServiceError(
-            f"Azure request failed with status {error.code}: {detail[:500]}"
+            f"Azure request failed with status {error.code}"
         ) from error
     except (URLError, TimeoutError) as error:
         raise AzureServiceError(f"Azure request failed: {error}") from error
