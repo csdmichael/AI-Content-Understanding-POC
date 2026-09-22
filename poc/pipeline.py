@@ -3,7 +3,7 @@ from typing import Any
 
 from poc.azure_clients import ContentSafetyClient, ContentUnderstandingClient
 
-ALLOWED_THRESHOLDS = (0, 2, 4, 6)
+ALLOWED_THRESHOLDS = (2, 4, 6)
 
 
 @dataclass(frozen=True)
@@ -36,19 +36,16 @@ def _field_value(field: Any) -> Any:
 def extract_fields(operation: dict) -> dict:
     result = operation.get("result", operation)
     contents = result.get("contents") or []
-    extracted = {}
-    repeated = set()
-    for content in contents:
-        for name, field in (content.get("fields") or {}).items():
-            value = _field_value(field)
-            if name not in extracted:
-                extracted[name] = value
-            elif name in repeated:
-                extracted[name].append(value)
-            else:
-                extracted[name] = [extracted[name], value]
-                repeated.add(name)
-    return extracted
+    blocks = [
+        {
+            name: _field_value(field)
+            for name, field in (content.get("fields") or {}).items()
+        }
+        for content in contents
+    ]
+    if len(blocks) <= 1:
+        return blocks[0] if blocks else {}
+    return {"contentBlocks": blocks}
 
 
 def _text_values(value: Any, path: str = ""):

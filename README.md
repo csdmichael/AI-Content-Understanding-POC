@@ -39,7 +39,7 @@ Copy `local.settings.example.json` to the ignored `local.settings.json` and set:
 | `CONTENT_UNDERSTANDING_ANALYZER_ID` | Existing custom purchase-order analyzer |
 | `CONTENT_SAFETY_ENDPOINT` | Content Safety endpoint |
 | `CONTENT_SAFETY_KEY` | Content Safety resource key |
-| `CONTENT_SAFETY_THRESHOLD` | Block at severity `0`, `2`, `4`, or `6` (default `2`) |
+| `CONTENT_SAFETY_THRESHOLD` | Block at severity `2`, `4`, or `6` (default `2`) |
 
 The function uses function-level authorization. In Azure, configure these values as
 application settings/Key Vault references and do not deploy `local.settings.json`.

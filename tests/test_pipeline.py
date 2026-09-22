@@ -68,7 +68,15 @@ class PipelineTests(unittest.TestCase):
                 }
             }
         )
-        self.assertEqual(fields, {"Vendor": ["Contoso", "Fabrikam"], "Total": 10})
+        self.assertEqual(
+            fields,
+            {
+                "contentBlocks": [
+                    {"Vendor": "Contoso"},
+                    {"Vendor": "Fabrikam", "Total": 10},
+                ]
+            },
+        )
 
     def test_approved_document_includes_fields(self):
         safety = FakeSafety()

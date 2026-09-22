@@ -78,11 +78,13 @@ def purchase_orders(request: func.HttpRequest) -> func.HttpResponse:
 
     try:
         pipeline = _pipeline_from_settings()
+    except ValueError as error:
+        return _response({"error": f"Invalid configuration: {error}"}, 500)
+
+    try:
         results = [pipeline.process(document) for document in documents]
     except AzureServiceError:
         return _response({"error": "Document processing failed"}, 502)
-    except ValueError as error:
-        return _response({"error": f"Invalid configuration: {error}"}, 500)
 
     approved = all(result["approved"] for result in results)
     return _response(
