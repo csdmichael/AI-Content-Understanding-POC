@@ -1,7 +1,11 @@
 import json
 import unittest
 
-from poc.azure_clients import ContentSafetyClient, ContentUnderstandingClient
+from poc.azure_clients import (
+    AzureServiceError,
+    ContentSafetyClient,
+    ContentUnderstandingClient,
+)
 
 
 class AzureClientTests(unittest.TestCase):
@@ -48,6 +52,23 @@ class AzureClientTests(unittest.TestCase):
             captured["categories"], ["Hate", "SelfHarm", "Sexual", "Violence"]
         )
         self.assertEqual(result[0]["severity"], 0)
+
+    def test_content_understanding_rejects_failed_poll_response(self):
+        responses = iter(
+            [
+                (202, {"Operation-Location": "https://example.test/operations/1"}, {}),
+                (503, {}, {}),
+            ]
+        )
+        client = ContentUnderstandingClient(
+            "https://example.test",
+            "key",
+            "purchase-orders",
+            request_json=lambda request, timeout: next(responses),
+            sleep=lambda _: None,
+        )
+        with self.assertRaisesRegex(AzureServiceError, "poll status 503"):
+            client.analyze(b"document", "application/pdf")
 
 
 if __name__ == "__main__":

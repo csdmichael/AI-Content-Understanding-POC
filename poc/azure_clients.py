@@ -79,7 +79,11 @@ class ContentUnderstandingClient:
                 operation_url,
                 headers={"Ocp-Apim-Subscription-Key": self.key},
             )
-            _, _, operation = self.request_json(poll, 30)
+            poll_status, _, operation = self.request_json(poll, 30)
+            if poll_status != 200:
+                raise AzureServiceError(
+                    f"Unexpected Content Understanding poll status {poll_status}"
+                )
             operation_status = str(operation.get("status", "")).lower()
             if operation_status == "succeeded":
                 return operation

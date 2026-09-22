@@ -29,16 +29,21 @@ def _pipeline_from_settings() -> PurchaseOrderPipeline:
     safety = ContentSafetyClient(
         _setting("CONTENT_SAFETY_ENDPOINT"), _setting("CONTENT_SAFETY_KEY")
     )
-    threshold = int(os.environ.get("CONTENT_SAFETY_THRESHOLD", "2"))
+    try:
+        threshold = int(os.environ.get("CONTENT_SAFETY_THRESHOLD", "2"))
+    except ValueError as error:
+        raise ValueError(
+            "CONTENT_SAFETY_THRESHOLD must be one of 0, 2, 4, or 6"
+        ) from error
     return PurchaseOrderPipeline(understanding, safety, threshold)
 
 
 def _uploads(request: func.HttpRequest) -> list[UploadedDocument]:
     uploads = []
     try:
-        files = (file for _, file in request.files.items(multi=True))
+        files = [file for _, file in request.files.items(multi=True)]
     except TypeError:
-        files = request.files.values()
+        files = list(request.files.values())
     for file in files:
         content = file.stream.read()
         if content:
@@ -70,8 +75,10 @@ def purchase_orders(request: func.HttpRequest) -> func.HttpResponse:
     try:
         pipeline = _pipeline_from_settings()
         results = [pipeline.process(document) for document in documents]
-    except (AzureServiceError, ValueError) as error:
-        return _response({"error": str(error)}, 502)
+    except AzureServiceError:
+        return _response({"error": "Document processing failed"}, 502)
+    except ValueError as error:
+        return _response({"error": f"Invalid configuration: {error}"}, 500)
 
     approved = all(result["approved"] for result in results)
     return _response(
