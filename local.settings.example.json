@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "CONTENT_UNDERSTANDING_ENDPOINT": "https://your-resource.services.ai.azure.com",
+    "CONTENT_UNDERSTANDING_KEY": "replace-with-a-local-secret",
+    "CONTENT_UNDERSTANDING_ANALYZER_ID": "purchase-order-analyzer",
+    "CONTENT_SAFETY_ENDPOINT": "https://your-safety-resource.cognitiveservices.azure.com",
+    "CONTENT_SAFETY_KEY": "replace-with-a-local-secret",
+    "CONTENT_SAFETY_THRESHOLD": "2"
+  }
+}
