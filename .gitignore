@@ -3,3 +3,11 @@ __pycache__/
 .pytest_cache/
 .venv/
 local.settings.json
+node_modules/
+deploy-package.zip
+.terraform/
+*.tfstate
+*.tfstate.*
+.env
+frontend/dist/
+frontend/.angular/

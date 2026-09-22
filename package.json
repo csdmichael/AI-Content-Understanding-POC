@@ -1,0 +1,21 @@
+{
+  "name": "ai-content-understanding-poc",
+  "version": "1.0.0",
+  "description": "Azure Content Understanding and Azure AI Content Safety In-Flight Guardrail POC for Salesforce Purchase Orders",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "cd frontend && npm run build && cd .. && node scripts/copy-dist.js",
+    "generate-data": "python scripts/generate_po_files.py",
+    "test": "node test/api.test.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "multer": "^1.4.5-lts.1",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
+  }
+}

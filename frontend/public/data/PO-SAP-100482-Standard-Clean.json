@@ -1,0 +1,77 @@
+{
+  "id": "scenario-1",
+  "po_number": "PO-SAP-100482",
+  "title": "Standard Clean Electronic Components PO",
+  "filename_base": "PO-SAP-100482-Standard-Clean",
+  "category": "Clean / Approved",
+  "safety_expected": "PASS",
+  "guardrail_flags": [],
+  "risk_level": "None (0/7)",
+  "supplier": {
+    "name": "Apex Component Technologies Inc.",
+    "division": "Global Industrial Semiconductor Division",
+    "address": "9200 Innovation Parkway, Suite 400",
+    "city_state_zip": "Centennial, CO 80112 USA",
+    "sap_vendor_id": "VEND-884021-US",
+    "contact": "sales-enterprise@apex-components.corp"
+  },
+  "buyer": {
+    "company": "Quantum Dynamics Systems LLC",
+    "division": "Aerospace & Embedded Compute Solutions",
+    "address": "450 Technology Square, 5th Floor",
+    "city_state_zip": "Cambridge, MA 02139 USA",
+    "sap_customer_id": "CUST-992314-NA",
+    "buyer_name": "Sarah Jenkins (Lead Procurement Eng.)"
+  },
+  "po_details": {
+    "po_date": "2026-09-15",
+    "delivery_date": "2026-10-05",
+    "incoterms": "DDP - Boston Hub",
+    "payment_terms": "Net 30 Days via Wire Transfer",
+    "currency": "USD",
+    "sap_doc_type": "NB - Standard Purchase Order",
+    "salesforce_opp_id": "SF-OPP-9482103"
+  },
+  "items": [
+    {
+      "pos": "00010",
+      "part_no": "STM32H753XIH6",
+      "desc": "High-perf ARM Cortex-M7 MCU 480MHz 2MB Flash TFBGA-240",
+      "qty": 2500,
+      "unit": "EA",
+      "price": 12.8,
+      "total": 32000.0
+    },
+    {
+      "pos": "00020",
+      "part_no": "C1206C106K4RACTU",
+      "desc": "SMD MLCC Ceramic Capacitor 10uF 16V X7R 1206 10%",
+      "qty": 20000,
+      "unit": "EA",
+      "price": 0.14,
+      "total": 2800.0
+    },
+    {
+      "pos": "00030",
+      "part_no": "TPS7A4700RGWR",
+      "desc": "Ultra-Low-Noise 36V 1A High-PSRR RF LDO Regulator QFN-20",
+      "qty": 3500,
+      "unit": "EA",
+      "price": 2.12,
+      "total": 7420.0
+    },
+    {
+      "pos": "00040",
+      "part_no": "DP83867ERGZ-S2",
+      "desc": "Robust Robust High Immunity Gigabit Ethernet PHY 48-VQFN",
+      "qty": 1200,
+      "unit": "EA",
+      "price": 5.08,
+      "total": 6100.0
+    }
+  ],
+  "subtotal": 48320.0,
+  "tax": 0.0,
+  "total": 48320.0,
+  "special_instructions": "Standard automated warehouse fulfillment. Please attach Certificate of Conformance (CoC) and RoHS-3 compliant declaration with pallet bill of lading. Consignee receipt sign-off required upon delivery."
+}

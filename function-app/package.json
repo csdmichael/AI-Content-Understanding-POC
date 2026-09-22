@@ -1,0 +1,11 @@
+{
+  "name": "salesforce-po-ingest-function",
+  "version": "1.0.0",
+  "description": "Azure Function processing Salesforce multipart purchase orders via Azure Content Understanding and Content Safety in-flight guardrails",
+  "scripts": {
+    "start": "func start"
+  },
+  "dependencies": {
+    "axios": "^1.7.9"
+  }
+}

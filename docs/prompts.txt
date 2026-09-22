@@ -1,0 +1,16 @@
+Build a UI in Angular / Ionic / Typescript that has different layout to optimize ux for web, tablet, mobile.
+Add Microsoft logo in header and Michael Yaacoub | Sr Solution Engineer in footer.
+UI should be hosted in same ap service plan as the following but different web app:
+    https://ai-content-safety-ui.azurewebsites.net
+Simulate the following scenario by generating Purchase Order files / Pdfs as if they were downloaded from SAP for a company like Arrow Electronics but don't mention their name.
+Store generated files under data folder.
+Build UI to demo this customer reuirement / workflow:
+    •	Content Understanding Integration POC: Arrow asked whether the same safety controls can protect a separate Azure Content Understanding workflow for Salesforce-submitted purchase orders, and Michael agreed to verify the deployment model and extend his POC with Content Safety integration.
+        o	Target Workflow: Mikhail explained that Salesforce will send multiple purchase-order files in different formats to an Azure Function. The function will forward the multipart files to Azure Content Understanding, extract selected fields using instructions and a layout model, and continue downstream processing.
+        o	Service Distinction: Michael and Mikhail clarified that Document Intelligence and Content Understanding are distinct capabilities, with Content Understanding serving as a broader multimodal service and Document Intelligence supporting structured document extraction. Michael agreed to confirm whether the intended Content Understanding deployment can operate standalone or requires an Azure AI Foundry resource.
+        o	Guardrail Applicability: Mikhail asked whether Content Safety guardrails can be applied while files are being parsed and extracted, rather than only when text is sent in a prompt. Michael agreed to build or extend a POC using the Content Understanding resource and test equivalent safety controls for the file-based workflow.
+        o	Next Steps: Michael will investigate the Foundry requirement, incorporate Content Safety into a base Content Understanding POC, and post an update in the chat. The team will schedule a follow-up once the POC is ready so the conditional approval and guardrail requirements can be reviewed.
+The readme file should be one only and has TOC that has sections for Architecture, features, folder structure, explain whole application, reference ms learn links and github repos inline and at end in references section
+Don't hard-code any variables in code, scripts, readme. Use variables and placeholders and load configs automatically from config files.
+Use terraform for any Infrastructure as code
+Well document best practices in readme to cover all customer scenarios also large context handling referring this use case in implementation and best practices: https://github.com/csdmichael/AI-Content-Safety-POC/tree/main/large-context

@@ -1,0 +1,48 @@
+@import '@ionic/angular/css/core.css';
+@import '@ionic/angular/css/normalize.css';
+@import '@ionic/angular/css/structure.css';
+@import '@ionic/angular/css/typography.css';
+
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --msft-blue: #0078d4;
+  --msft-navy: #0b2545;
+  --msft-dark: #1e1e1e;
+  --msft-gray-10: #faf9f8;
+  --msft-gray-20: #f3f2f1;
+  --msft-gray-30: #edebe9;
+  --msft-gray-60: #c8c6c4;
+  --msft-gray-130: #605e5c;
+  --msft-gray-160: #323130;
+  --msft-success: #107c41;
+  --msft-danger: #d13438;
+  --msft-warning: #d83b01;
+  --msft-info: #0078d4;
+  --shadow-card: 0 1.6px 3.6px 0 rgba(0,0,0,0.08), 0 0.3px 0.9px 0 rgba(0,0,0,0.06);
+  --shadow-elevation: 0 6.4px 14.4px 0 rgba(0,0,0,0.1), 0 1.2px 3.6px 0 rgba(0,0,0,0.08);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family);
+  background-color: #f4f6f9;
+  color: var(--msft-gray-160);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+code {
+  font-family: Consolas, "SFMono-Regular", Menlo, Monaco, monospace;
+  background: #f0f2f5;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #0b2545;
+}
+

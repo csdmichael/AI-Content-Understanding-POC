@@ -1,0 +1,79 @@
+{
+  "id": "scenario-2",
+  "po_number": "PO-SAP-100483",
+  "title": "High-Value Multi-Page Enterprise Infrastructure Order",
+  "filename_base": "PO-SAP-100483-HighValue-MultiPage",
+  "category": "High Value / Multi-Page",
+  "safety_expected": "PASS",
+  "guardrail_flags": [
+    "High-Value-Auditing"
+  ],
+  "risk_level": "Low (Audit Required)",
+  "supplier": {
+    "name": "Apex Component Technologies Inc.",
+    "division": "Enterprise Compute & Accelerator Systems",
+    "address": "9200 Innovation Parkway, Suite 400",
+    "city_state_zip": "Centennial, CO 80112 USA",
+    "sap_vendor_id": "VEND-884021-US",
+    "contact": "enterprise-datacenter@apex-components.corp"
+  },
+  "buyer": {
+    "company": "Horizon Cloud Systems Infrastructure",
+    "division": "Hyperscale Datacenter Buildouts",
+    "address": "1200 Pacific Heights Blvd, Tower B",
+    "city_state_zip": "Seattle, WA 98101 USA",
+    "sap_customer_id": "CUST-774129-WW",
+    "buyer_name": "Marcus Vance (Director of Global Sourcing)"
+  },
+  "po_details": {
+    "po_date": "2026-09-18",
+    "delivery_date": "2026-11-15",
+    "incoterms": "FCA - Apex Logistics Center Phoenix",
+    "payment_terms": "Net 60 Days with Irrevocable Corporate Guarantee",
+    "currency": "USD",
+    "sap_doc_type": "UB - Capital Hardware PO",
+    "salesforce_opp_id": "SF-OPP-9483882"
+  },
+  "items": [
+    {
+      "pos": "00010",
+      "part_no": "APX-ACCEL-U55C",
+      "desc": "Alveo High-Density Computing Acceleration PCIe Card 64GB HBM2",
+      "qty": 40,
+      "unit": "EA",
+      "price": 4450.0,
+      "total": 178000.0
+    },
+    {
+      "pos": "00020",
+      "part_no": "SOC-HYPER-9884",
+      "desc": "Cloud Datacenter 64-Core ARM Neoverse Server SoC BGA-3200",
+      "qty": 80,
+      "unit": "EA",
+      "price": 2850.0,
+      "total": 228000.0
+    },
+    {
+      "pos": "00030",
+      "part_no": "PMIC-ARRAY-48V",
+      "desc": "High-Efficiency 48V to 1V Multi-Phase Core Power Stage Modules",
+      "qty": 600,
+      "unit": "EA",
+      "price": 145.0,
+      "total": 87000.0
+    },
+    {
+      "pos": "00040",
+      "part_no": "OPT-QSFP-DD-800",
+      "desc": "800G Dual DR4 Single-Mode Optical Transceiver Module 1310nm 2km",
+      "qty": 150,
+      "unit": "EA",
+      "price": 610.0,
+      "total": 91500.0
+    }
+  ],
+  "subtotal": 584500.0,
+  "tax": 0.0,
+  "total": 584500.0,
+  "special_instructions": "ISO 9001:2015 traceability required. Delivery split into two batches: Batch 1 (50%) to Phoenix DC on 2026-10-25; Batch 2 (50%) to Ashburn DC on 2026-11-15. ESD sensitive handling level 3."
+}

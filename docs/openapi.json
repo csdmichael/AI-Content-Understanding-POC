@@ -1,0 +1,305 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Azure AI Content Understanding & Content Safety In-Flight Guardrail API",
+    "version": "1.0.0",
+    "description": "Production reference implementation: Salesforce-submitted purchase orders processed via Azure Function, extracted with Azure AI Content Understanding (layout + instructions), and protected in-flight with Azure AI Content Safety guardrails.",
+    "contact": {
+      "name": "Michael Yaacoub | Sr Solution Engineer",
+      "url": "https://github.com/csdmichael"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Current Environment (Local or Azure App Service)"
+    }
+  ],
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "summary": "Health Check & Environment Status",
+        "description": "Returns service health, version, node runtime, active cloud services, and App Service plan configuration.",
+        "responses": {
+          "200": {
+            "description": "Service is healthy and ready",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/config": {
+      "get": {
+        "summary": "Application & Architecture Configuration",
+        "description": "Returns runtime non-sensitive configuration, cloud endpoints, and architectural flags.",
+        "responses": {
+          "200": {
+            "description": "Configuration object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scenarios": {
+      "get": {
+        "summary": "List Available SAP Purchase Order Scenarios",
+        "description": "Retrieves the manifest of simulated SAP purchase order documents covering clean, high-value, prompt-injected, PII-violating, embargoed, and large-context scenarios.",
+        "responses": {
+          "200": {
+            "description": "List of scenario metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ScenarioSummary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scenarios/{id}": {
+      "get": {
+        "summary": "Get Detailed Scenario with Items and Metadata",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Scenario ID (e.g., scenario-1, scenario-3)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed Scenario Object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScenarioDetail"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Scenario not found"
+          }
+        }
+      }
+    },
+    "/api/v1/process-po": {
+      "post": {
+        "summary": "Simulate Azure Function Ingestion & Content Understanding Pipeline",
+        "description": "Simulates Salesforce multipart ingestion, executes Content Understanding layout/instruction extraction, applies Content Safety in-flight guardrails, and renders conditional routing decision.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessPORequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pipeline execution results with extracted fields and safety verdict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessPOResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/guardrails/analyze": {
+      "post": {
+        "summary": "Direct Content Safety In-Flight Guardrail Inspection",
+        "description": "Inspects untrusted text or document snippets for prompt shields, PII, export control blocklists, and moderation categories.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyzeGuardrailRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Guardrail analysis response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyScanResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/guardrails/large-context": {
+      "post": {
+        "summary": "Large Context Sliding Window & Token Chunking Analysis",
+        "description": "Calculates recursive chunking with 50-token sliding overlap and synthesizes aggregate risk using MAX_SEVERITY rule.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": { "type": "string" },
+                  "chunkSize": { "type": "integer", "default": 250 },
+                  "overlapTokens": { "type": "integer", "default": 50 }
+                },
+                "required": ["text"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Large context chunking breakdown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LargeContextScan"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "example": "UP" },
+          "service": { "type": "string", "example": "ai-content-understanding-poc" },
+          "version": { "type": "string", "example": "1.0.0" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "environment": { "type": "string", "example": "production" },
+          "nodeVersion": { "type": "string" },
+          "appServicePlan": { "type": "string", "example": "caldova-showcase-plan (West US 2)" },
+          "services": {
+            "type": "object",
+            "properties": {
+              "contentUnderstanding": { "type": "string", "example": "CONNECTED" },
+              "contentSafety": { "type": "string", "example": "ACTIVE" },
+              "salesforceIngestTrigger": { "type": "string", "example": "READY" }
+            }
+          }
+        }
+      },
+      "ConfigResponse": {
+        "type": "object",
+        "properties": {
+          "azureAiServicesEndpoint": { "type": "string" },
+          "contentSafetyEndpoint": { "type": "string" },
+          "functionAppEndpoint": { "type": "string" },
+          "largeContextRefUrl": { "type": "string" }
+        }
+      },
+      "ScenarioSummary": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "po_number": { "type": "string" },
+          "title": { "type": "string" },
+          "category": { "type": "string" },
+          "safety_expected": { "type": "string" },
+          "risk_level": { "type": "string" },
+          "total": { "type": "number" },
+          "pdf_file": { "type": "string" }
+        }
+      },
+      "ScenarioDetail": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "po_number": { "type": "string" },
+          "title": { "type": "string" },
+          "special_instructions": { "type": "string" },
+          "total": { "type": "number" },
+          "items": { "type": "array", "items": { "type": "object" } }
+        }
+      },
+      "ProcessPORequest": {
+        "type": "object",
+        "properties": {
+          "scenarioId": { "type": "string" },
+          "poNumber": { "type": "string" },
+          "specialInstructions": { "type": "string" },
+          "total": { "type": "number" }
+        },
+        "required": ["poNumber"]
+      },
+      "ProcessPOResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "example": "success" },
+          "scenario": { "$ref": "#/components/schemas/ScenarioDetail" }
+        }
+      },
+      "AnalyzeGuardrailRequest": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "documentContext": { "type": "string" },
+          "checkPii": { "type": "boolean", "default": true },
+          "checkPromptShield": { "type": "boolean", "default": true }
+        },
+        "required": ["text"]
+      },
+      "SafetyScanResult": {
+        "type": "object",
+        "properties": {
+          "decision": { "type": "string", "enum": ["APPROVED", "BLOCKED", "AUDIT_REQUIRED"] },
+          "riskScore": { "type": "number" },
+          "overallVerdict": { "type": "string" },
+          "promptShield": { "type": "object" },
+          "categories": { "type": "array", "items": { "type": "object" } },
+          "piiEntities": { "type": "array", "items": { "type": "object" } },
+          "blocklistHits": { "type": "array", "items": { "type": "string" } },
+          "processingTimeMs": { "type": "number" }
+        }
+      },
+      "LargeContextScan": {
+        "type": "object",
+        "properties": {
+          "totalTokens": { "type": "number" },
+          "chunkSize": { "type": "number" },
+          "overlapTokens": { "type": "number" },
+          "totalChunks": { "type": "number" },
+          "maxChunkRisk": { "type": "number" },
+          "aggregationStrategy": { "type": "string" },
+          "chunkRisks": { "type": "array", "items": { "type": "object" } }
+        }
+      }
+    }
+  }
+}

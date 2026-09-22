@@ -1,0 +1,696 @@
+<ion-app [class]="'layout-' + layoutMode">
+  <!-- Top Navigation Header -->
+  <ion-header class="top-nav-header">
+    <ion-toolbar class="main-toolbar">
+      <div class="header-container">
+        <!-- Brand & Microsoft Logo -->
+        <div class="brand-group">
+          <div class="msft-logo" title="Microsoft Corporation">
+            <svg width="22" height="22" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="10.5" height="10.5" fill="#F25022"/>
+              <rect x="12.5" width="10.5" height="10.5" fill="#7FBA00"/>
+              <rect y="12.5" width="10.5" height="10.5" fill="#00A4EF"/>
+              <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900"/>
+            </svg>
+            <span class="msft-wordmark">Microsoft</span>
+          </div>
+          <div class="brand-divider"></div>
+          <div class="solution-title">
+            <span class="product-name">Azure AI Foundry</span>
+            <span class="poc-badge">Content Understanding & In-Flight Guardrail POC</span>
+          </div>
+        </div>
+
+        <!-- Viewport / Layout Mode Switcher (Web, Tablet, Mobile) -->
+        <div class="viewport-controls">
+          <span class="control-label">UX Layout:</span>
+          <div class="btn-group">
+            <button class="layout-btn" [class.active]="layoutMode === 'auto'" (click)="setLayout('auto')" title="Auto-adapt to browser window width">
+              <span class="btn-icon">⚡</span> Auto
+            </button>
+            <button class="layout-btn" [class.active]="layoutMode === 'desktop'" (click)="setLayout('desktop')" title="Force Web / Desktop 3-Column UX">
+              <span class="btn-icon">🖥️</span> Web
+            </button>
+            <button class="layout-btn" [class.active]="layoutMode === 'tablet'" (click)="setLayout('tablet')" title="Force Tablet 2-Column UX">
+              <span class="btn-icon">📱</span> Tablet
+            </button>
+            <button class="layout-btn" [class.active]="layoutMode === 'mobile'" (click)="setLayout('mobile')" title="Force Mobile Single-Column & Bottom Bar UX">
+              <span class="btn-icon">📲</span> Mobile
+            </button>
+          </div>
+        </div>
+
+        <!-- External Quick Links -->
+        <div class="header-links">
+          <a class="nav-chip" [href]="swaggerUrl" target="_blank" title="View OpenAPI / Swagger Documentation">
+            <span class="chip-dot green"></span> Swagger API Docs
+          </a>
+          <a class="nav-chip" [href]="healthUrl" target="_blank" title="Check Health Status">
+            <span class="chip-dot blue"></span> Health API
+          </a>
+        </div>
+      </div>
+    </ion-toolbar>
+
+    <!-- Subheader: Customer Workflow Context & Scenario Selector -->
+    <div class="scenario-bar">
+      <div class="scenario-bar-inner">
+        <div class="scenario-label">
+          <span class="wf-title">Customer Workflow:</span>
+          <span class="wf-desc">Salesforce Multipart PO → Azure Function → Content Understanding → Content Safety Guardrails</span>
+        </div>
+
+        <!-- Scenario Pills -->
+        <div class="scenario-pills">
+          <div *ngFor="let sc of scenarios" 
+               class="scenario-pill" 
+               [class.active]="selectedScenario?.id === sc.id"
+               (click)="selectScenario(sc)">
+            <div class="pill-top">
+              <span class="pill-po">{{ sc.po_number }}</span>
+              <span class="pill-badge" [class.badge-pass]="sc.safety_expected === 'PASS'" [class.badge-blocked]="sc.safety_expected === 'BLOCKED'">
+                {{ sc.safety_expected === 'PASS' ? 'PASS' : 'BLOCKED' }}
+              </span>
+            </div>
+            <div class="pill-title">{{ sc.title }}</div>
+          </div>
+
+          <!-- Upload Custom File -->
+          <div class="scenario-pill custom-upload-pill" [class.active]="isCustomUpload">
+            <label class="upload-label">
+              <input type="file" (change)="handleFileUpload($event)" accept=".pdf,.json,.txt" class="hidden-input" />
+              <div class="pill-top">
+                <span class="pill-po">📂 Upload PO</span>
+                <span class="pill-badge badge-custom">Custom</span>
+              </div>
+              <div class="pill-title">{{ customFileName || 'Upload PDF/JSON/TXT' }}</div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-header>
+
+  <!-- Main Scrollable Content -->
+  <ion-content class="main-content-scroll">
+    <div class="layout-container" [class]="'mode-' + layoutMode">
+
+      <!-- ========================================================================= -->
+      <!-- COLUMN 1: Salesforce Multi-Format File Ingest & SAP Document Inspector    -->
+      <!-- ========================================================================= -->
+      <section class="col-section col-ingest" *ngIf="layoutMode !== 'mobile' || activeMobileTab === 'ingest'">
+        <div class="card panel-card">
+          <div class="panel-header">
+            <div class="panel-header-title">
+              <span class="stage-tag">Step 1</span>
+              <h3>Salesforce Ingest & SAP Document</h3>
+            </div>
+            <div class="panel-header-actions">
+              <a *ngIf="selectedScenario" [href]="'/data/' + selectedScenario.pdf_file" target="_blank" class="download-link" title="Open or Download Official SAP PDF">
+                📥 View SAP PDF
+              </a>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <!-- Source Ingestion Metadata -->
+            <div class="info-banner" *ngIf="selectedScenario">
+              <div class="info-row">
+                <span class="info-key">Origin Source:</span>
+                <span class="info-val highlight">Salesforce CRM Opportunity (#{{ selectedScenario.po_details.salesforce_opp_id }})</span>
+              </div>
+              <div class="info-row">
+                <span class="info-key">SAP Document:</span>
+                <span class="info-val"><b>{{ selectedScenario.po_number }}</b> ({{ selectedScenario.po_details.sap_doc_type }})</span>
+              </div>
+              <div class="info-row">
+                <span class="info-key">Files Attached:</span>
+                <span class="info-val code-val">{{ selectedScenario.pdf_file }} | {{ selectedScenario.json_file }}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-key">Total Order Value:</span>
+                <span class="info-val amount-val">${{ selectedScenario.total | number:'1.2-2' }} {{ selectedScenario.po_details.currency }}</span>
+              </div>
+            </div>
+
+            <!-- SAP Header Parties: Supplier & Buyer -->
+            <div class="parties-grid" *ngIf="selectedScenario">
+              <div class="party-box supplier-box">
+                <div class="party-title">Vendor / Distributor</div>
+                <div class="party-name">{{ selectedScenario.supplier.name }}</div>
+                <div class="party-sub">{{ selectedScenario.supplier.division }}</div>
+                <div class="party-detail">{{ selectedScenario.supplier.address }}, {{ selectedScenario.supplier.city_state_zip }}</div>
+                <div class="party-id">Vendor ID: <code>{{ selectedScenario.supplier.sap_vendor_id }}</code></div>
+              </div>
+
+              <div class="party-box buyer-box">
+                <div class="party-title">Deliver To / Buyer</div>
+                <div class="party-name">{{ selectedScenario.buyer.company }}</div>
+                <div class="party-sub">{{ selectedScenario.buyer.division }}</div>
+                <div class="party-detail">Lead: {{ selectedScenario.buyer.buyer_name }}</div>
+                <div class="party-id">Customer ID: <code>{{ selectedScenario.buyer.sap_customer_id }}</code></div>
+              </div>
+            </div>
+
+            <!-- SAP Line Items Preview -->
+            <div class="items-section" *ngIf="selectedScenario">
+              <div class="section-subtitle">
+                <span>SAP S/4HANA Purchase Order Line Items</span>
+                <span class="count-tag">{{ selectedScenario.items.length }} materials</span>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Pos</th>
+                      <th>Material / Part #</th>
+                      <th>Description</th>
+                      <th class="text-right">Qty</th>
+                      <th class="text-right">Unit Price</th>
+                      <th class="text-right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let it of selectedScenario.items | slice:0:6">
+                      <td><code>{{ it.pos }}</code></td>
+                      <td><b>{{ it.part_no }}</b></td>
+                      <td class="desc-cell">{{ it.desc }}</td>
+                      <td class="text-right">{{ it.qty | number }}</td>
+                      <td class="text-right">${{ it.price | number:'1.2-2' }}</td>
+                      <td class="text-right bold">${{ it.total | number:'1.2-2' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="table-more" *ngIf="selectedScenario.items.length > 6">
+                + {{ selectedScenario.items.length - 6 }} more line items (large context dataset)
+              </div>
+            </div>
+
+            <!-- Special Procurement & Delivery Instructions (Target of Guardrails!) -->
+            <div class="instructions-section" *ngIf="selectedScenario">
+              <div class="instruction-header" [class.alert-header]="selectedScenario.safety_expected === 'BLOCKED'">
+                <span>Procurement & Delivery Instructions</span>
+                <span class="risk-badge" *ngIf="selectedScenario.safety_expected === 'BLOCKED'">⚠️ High Risk / Hostile Payload Target</span>
+              </div>
+              <div class="instruction-box" [class.box-danger]="selectedScenario.safety_expected === 'BLOCKED'">
+                <p>{{ selectedScenario.special_instructions }}</p>
+              </div>
+            </div>
+
+            <!-- Ingestion Action Button -->
+            <div class="action-btn-row">
+              <button class="btn btn-primary" (click)="runPipeline()" [disabled]="isProcessing">
+                <span *ngIf="!isProcessing">⚡ Re-Trigger Ingestion & Safety Scan</span>
+                <span *ngIf="isProcessing">⏳ Processing Salesforce Multipart...</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- COLUMN 2: Azure Function Orchestrator & Content Understanding Extraction  -->
+      <!-- ========================================================================= -->
+      <section class="col-section col-extraction" *ngIf="layoutMode !== 'mobile' || activeMobileTab === 'pipeline'">
+        <div class="card panel-card">
+          <div class="panel-header">
+            <div class="panel-header-title">
+              <span class="stage-tag">Step 2</span>
+              <h3>Azure Function & Content Understanding</h3>
+            </div>
+            <div class="panel-header-actions">
+              <span class="badge model-badge">Model: Layout + Instruction</span>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <!-- Pipeline Live Stages Timeline -->
+            <div class="pipeline-timeline">
+              <div class="timeline-step step-complete">
+                <div class="step-icon">1</div>
+                <div class="step-info">
+                  <div class="step-name">Salesforce Ingestion Trigger</div>
+                  <div class="step-sub">Multipart form-data received</div>
+                </div>
+                <span class="step-status status-ok">200 OK</span>
+              </div>
+
+              <div class="timeline-step step-complete">
+                <div class="step-icon">2</div>
+                <div class="step-info">
+                  <div class="step-name">Content Understanding Analyzer</div>
+                  <div class="step-sub">Multimodal document parsing & schema mapping</div>
+                </div>
+                <span class="step-status status-ok">220ms</span>
+              </div>
+
+              <div class="timeline-step" [class.step-complete]="selectedScenario?.safety_scan?.decision === 'APPROVED'" [class.step-warn]="selectedScenario?.safety_scan?.decision === 'BLOCKED'">
+                <div class="step-icon">3</div>
+                <div class="step-info">
+                  <div class="step-name">Content Safety Guardrail Shield</div>
+                  <div class="step-sub">In-flight Prompt Shield & PII verification</div>
+                </div>
+                <span class="step-status" [class.status-ok]="selectedScenario?.safety_scan?.decision === 'APPROVED'" [class.status-danger]="selectedScenario?.safety_scan?.decision === 'BLOCKED'">
+                  {{ selectedScenario?.safety_scan?.decision }}
+                </span>
+              </div>
+
+              <div class="timeline-step" [class.step-complete]="selectedScenario?.safety_scan?.decision === 'APPROVED'" [class.step-warn]="selectedScenario?.safety_scan?.decision === 'BLOCKED'">
+                <div class="step-icon">4</div>
+                <div class="step-info">
+                  <div class="step-name">Conditional Routing Engine</div>
+                  <div class="step-sub">{{ selectedScenario?.safety_scan?.decision === 'APPROVED' ? 'Dispatched to SAP S/4HANA' : 'Quarantined for security audit' }}</div>
+                </div>
+                <span class="step-status" [class.status-ok]="selectedScenario?.safety_scan?.decision === 'APPROVED'" [class.status-danger]="selectedScenario?.safety_scan?.decision === 'BLOCKED'">
+                  {{ selectedScenario?.safety_scan?.decision === 'APPROVED' ? 'SAP Sync' : 'Quarantine' }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Content Understanding Extracted Fields -->
+            <div class="extraction-results" *ngIf="selectedScenario?.extracted_fields">
+              <div class="section-subtitle">
+                <span>Extracted Schema Fields (Content Understanding)</span>
+                <span class="count-tag">{{ selectedScenario?.extracted_fields?.length }} Fields</span>
+              </div>
+
+              <div class="table-responsive">
+                <table class="data-table field-table">
+                  <thead>
+                    <tr>
+                      <th>Schema Field</th>
+                      <th>Extracted Value</th>
+                      <th>Confidence</th>
+                      <th>Source Location</th>
+                      <th>Safety Gate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let f of selectedScenario?.extracted_fields" [class.row-danger]="f.safetyStatus === 'quarantined'" [class.row-warn]="f.safetyStatus === 'flagged'">
+                      <td><b>{{ f.fieldName }}</b></td>
+                      <td class="value-cell">
+                        <span>{{ f.extractedValue }}</span>
+                        <div *ngIf="f.securityNote" class="field-security-note">
+                          ⚠️ {{ f.securityNote }}
+                        </div>
+                      </td>
+                      <td>
+                        <span class="conf-pill" [class]="getConfidenceBadgeClass(f.confidence)">
+                          {{ (f.confidence * 100) | number:'1.1-1' }}%
+                        </span>
+                      </td>
+                      <td class="source-cell">{{ f.sourceLocation }}</td>
+                      <td>
+                        <span class="gate-tag" [class.tag-clean]="f.safetyStatus === 'clean'" [class.tag-quarantined]="f.safetyStatus === 'quarantined'" [class.tag-flagged]="f.safetyStatus === 'flagged'">
+                          {{ f.safetyStatus | uppercase }}
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Live Execution Event Stream -->
+            <div class="event-stream" *ngIf="pipelineLogs.length > 0">
+              <div class="section-subtitle">
+                <span>Azure Function Execution Logs</span>
+                <span class="count-tag">Live Stream</span>
+              </div>
+              <div class="log-console">
+                <div *ngFor="let log of pipelineLogs" class="log-line">
+                  <span class="log-time">[{{ log.timestamp }}]</span>
+                  <span class="log-step">[{{ log.step }}]</span>
+                  <span class="log-msg">{{ log.details }}</span>
+                  <span *ngIf="log.durationMs" class="log-dur">({{ log.durationMs }}ms)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- COLUMN 3: Content Safety In-Flight Guardrails & Large-Context Analysis    -->
+      <!-- ========================================================================= -->
+      <section class="col-section col-guardrails" *ngIf="layoutMode !== 'mobile' || activeMobileTab === 'guardrails'">
+        <div class="card panel-card">
+          <div class="panel-header">
+            <div class="panel-header-title">
+              <span class="stage-tag">Step 3</span>
+              <h3>Azure AI Content Safety Guardrails</h3>
+            </div>
+            <div class="panel-header-actions">
+              <span class="badge guardrail-badge">In-Flight File Protection</span>
+            </div>
+          </div>
+
+          <div class="panel-body" *ngIf="selectedScenario?.safety_scan as scan">
+            <!-- Decision Hero Banner -->
+            <div class="decision-hero" [style.border-left-color]="getDecisionColor(scan.decision)">
+              <div class="decision-status">
+                <div class="decision-label">OVERALL IN-FLIGHT VERDICT</div>
+                <div class="decision-val" [style.color]="getDecisionColor(scan.decision)">
+                  {{ scan.decision }}
+                </div>
+              </div>
+              <div class="decision-score">
+                <div class="score-circle" [style.border-color]="getDecisionColor(scan.decision)">
+                  <span class="score-num">{{ scan.riskScore }}</span>
+                  <span class="score-max">/100</span>
+                </div>
+                <span class="score-desc">Calculated Risk</span>
+              </div>
+            </div>
+
+            <div class="verdict-summary-box">
+              <p><b>Pipeline Route:</b> {{ scan.overallVerdict }}</p>
+            </div>
+
+            <!-- Prompt Shield Guardrail (Critical Customer Ask) -->
+            <div class="guardrail-card" [class.shield-active]="scan.promptShield.documentIndirectAttackDetected">
+              <div class="guardrail-card-header">
+                <span class="shield-icon">🛡️</span>
+                <span class="guardrail-name">Prompt Shield for Indirect Attacks</span>
+                <span class="shield-verdict" [class.verdict-bad]="scan.promptShield.documentIndirectAttackDetected" [class.verdict-good]="!scan.promptShield.documentIndirectAttackDetected">
+                  {{ scan.promptShield.documentIndirectAttackDetected ? 'ATTACK DETECTED' : 'CLEAR' }}
+                </span>
+              </div>
+              <div class="guardrail-card-body">
+                <p class="guardrail-desc">
+                  Scans untrusted documents and SAP special instruction text for prompt injection, jailbreaks, and system override attempts before model processing.
+                </p>
+                <div *ngIf="scan.promptShield.documentIndirectAttackDetected" class="attack-details">
+                  <div class="attack-row">
+                    <span class="key">Attack Classification:</span>
+                    <span class="val text-danger"><b>{{ scan.promptShield.attackType }}</b> (Severity {{ scan.promptShield.severityScore }}/7)</span>
+                  </div>
+                  <div class="attack-snippet" *ngIf="scan.promptShield.snippet">
+                    <code>{{ scan.promptShield.snippet }}</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PII & Sensitive Entity Shield -->
+            <div class="guardrail-card" [class.shield-active]="scan.piiEntities.length > 0">
+              <div class="guardrail-card-header">
+                <span class="shield-icon">🔒</span>
+                <span class="guardrail-name">PII & Financial Data Shield</span>
+                <span class="shield-verdict" [class.verdict-bad]="scan.piiEntities.length > 0" [class.verdict-good]="scan.piiEntities.length === 0">
+                  {{ scan.piiEntities.length > 0 ? (scan.piiEntities.length + ' PII ENTITIES MASKED') : 'NO PII DETECTED' }}
+                </span>
+              </div>
+              <div class="guardrail-card-body">
+                <p class="guardrail-desc">Detects and redacts SSNs, credit cards, banking details, personal phone numbers, and addresses embedded in document attachments.</p>
+                <div *ngIf="scan.piiEntities.length > 0" class="pii-list">
+                  <div *ngFor="let pii of scan.piiEntities" class="pii-item">
+                    <span class="pii-type">{{ pii.type }}:</span>
+                    <span class="pii-val">{{ pii.valueMasked }}</span>
+                    <span class="pii-conf">{{ (pii.confidence * 100) | number:'1.0-0' }}% Conf</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Custom Enterprise Blocklists / Export Controls -->
+            <div class="guardrail-card" [class.shield-active]="scan.blocklistHits.length > 0">
+              <div class="guardrail-card-header">
+                <span class="shield-icon">🚫</span>
+                <span class="guardrail-name">ITAR & Sanctioned Entity Blocklist</span>
+                <span class="shield-verdict" [class.verdict-bad]="scan.blocklistHits.length > 0" [class.verdict-good]="scan.blocklistHits.length === 0">
+                  {{ scan.blocklistHits.length > 0 ? (scan.blocklistHits.length + ' MATCHES') : 'CLEAR' }}
+                </span>
+              </div>
+              <div class="guardrail-card-body">
+                <p class="guardrail-desc">Enforces dual-use export controls, EAR/ITAR banned component lists, and trade sanctions across global procurement workflows.</p>
+                <div *ngIf="scan.blocklistHits.length > 0" class="blocklist-hits">
+                  <div *ngFor="let hit of scan.blocklistHits" class="hit-item">
+                    ⚠️ {{ hit }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Text Moderation Categories -->
+            <div class="guardrail-card">
+              <div class="guardrail-card-header">
+                <span class="shield-icon">📊</span>
+                <span class="guardrail-name">Text Moderation Harm Categories</span>
+                <span class="shield-verdict verdict-good">MONITORED</span>
+              </div>
+              <div class="guardrail-card-body">
+                <div class="categories-grid">
+                  <div *ngFor="let cat of scan.categories" class="cat-box" [class.cat-alert]="cat.status !== 'SAFE'">
+                    <div class="cat-top">
+                      <span class="cat-name">{{ cat.category }}</span>
+                      <span class="cat-score">Level {{ cat.score }}/7</span>
+                    </div>
+                    <div class="cat-bar-bg">
+                      <div class="cat-bar-fill" [style.width.%]="(cat.score / 7) * 100" [class.fill-danger]="cat.status !== 'SAFE'"></div>
+                    </div>
+                    <span class="cat-status">{{ cat.description }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Large-Context Windowing & Chunking Visualizer -->
+            <div class="guardrail-card large-context-card">
+              <div class="guardrail-card-header">
+                <span class="shield-icon">📑</span>
+                <div class="guardrail-title-wrap">
+                  <span class="guardrail-name">Large-Context Windowing Architecture</span>
+                  <a href="https://github.com/csdmichael/AI-Content-Safety-POC/tree/main/large-context" target="_blank" class="ref-link">
+                    GitHub Reference ↗
+                  </a>
+                </div>
+                <span class="shield-verdict verdict-info">
+                  {{ scan.largeContextScan.totalChunks }} Chunks ({{ scan.largeContextScan.totalTokens }} tokens)
+                </span>
+              </div>
+              <div class="guardrail-card-body">
+                <p class="guardrail-desc">
+                  Recursive chunking with <b>50-token sliding overlap</b> prevents prompt attacks and PII from escaping across token boundaries in 10+ page catalog orders.
+                </p>
+
+                <!-- Chunk Stream Visualizer -->
+                <div class="chunks-container">
+                  <div *ngFor="let chunk of scan.largeContextScan.chunkRisks" class="chunk-pill" [class.chunk-danger]="chunk.riskScore > 50" [class.chunk-warn]="chunk.riskScore > 20 && chunk.riskScore <= 50">
+                    <span class="chunk-num">#{{ chunk.chunkIndex }}</span>
+                    <span class="chunk-tokens">{{ chunk.tokenStart }}-{{ chunk.tokenEnd }}t</span>
+                    <span class="chunk-risk">Risk: {{ chunk.riskScore }}</span>
+                  </div>
+                </div>
+
+                <div class="aggregation-rule">
+                  <span class="rule-label">Synthesis Policy:</span>
+                  <span class="rule-val"><b>MAX_SEVERITY</b> (Any chunk violation triggers quarantine for the whole document)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ARCHITECTURAL CLARIFICATIONS SECTION (Customer & Mikhail's Questions)    -->
+    <!-- ========================================================================= -->
+    <section class="arch-section" *ngIf="layoutMode !== 'mobile' || activeMobileTab === 'architecture'">
+      <div class="card arch-card">
+        <div class="arch-header">
+          <div class="arch-badge">Enterprise Architectural Guidance</div>
+          <h2>Azure Content Understanding & Safety Deployment Architecture</h2>
+          <p class="arch-subtitle">Grounding the POC in Microsoft best practices for Salesforce, Content Understanding, and in-flight guardrails.</p>
+
+          <!-- Architecture Tabs -->
+          <div class="arch-tabs">
+            <button class="arch-tab-btn" [class.active]="activeArchTab === 'distinction'" (click)="setArchTab('distinction')">
+              1. Document Intelligence vs Content Understanding
+            </button>
+            <button class="arch-tab-btn" [class.active]="activeArchTab === 'foundry'" (click)="setArchTab('foundry')">
+              2. Azure AI Foundry vs Standalone Deployment
+            </button>
+            <button class="arch-tab-btn" [class.active]="activeArchTab === 'guardrails'" (click)="setArchTab('guardrails')">
+              3. In-Flight File Guardrail Applicability
+            </button>
+            <button class="arch-tab-btn" [class.active]="activeArchTab === 'largeContext'" (click)="setArchTab('largeContext')">
+              4. Large-Context Best Practices
+            </button>
+          </div>
+        </div>
+
+        <div class="arch-body">
+          <!-- Tab 1: Service Distinction -->
+          <div *ngIf="activeArchTab === 'distinction'" class="arch-content-panel">
+            <h3>Document Intelligence vs. Azure Content Understanding</h3>
+            <p>
+              Michael and Mikhail clarified that while both services extract information from files, they serve distinct architectural tiers:
+            </p>
+            <div class="comparison-grid">
+              <div class="comp-card di-card">
+                <div class="comp-badge">Azure Document Intelligence</div>
+                <h4>Structured OCR & Document Layout</h4>
+                <ul>
+                  <li><b>Core Specialization:</b> High-throughput deterministic extraction of printed & handwritten documents, forms, receipts, invoices, IDs, and tax documents.</li>
+                  <li><b>Extraction Technique:</b> Layout analysis, bounding box coordinate tracking, tabular hierarchy reconstruction, and key-value pair detection.</li>
+                  <li><b>Model Customization:</b> Custom template models and custom neural models trained on labelled PDF/TIFF samples.</li>
+                  <li><b>Optimal Use Case:</b> Standardized invoice layouts where exact pixel-level coordinate alignment and schema rigidity are paramount.</li>
+                </ul>
+              </div>
+
+              <div class="comp-card cu-card">
+                <div class="comp-badge cu-badge-active">Azure AI Content Understanding</div>
+                <h4>Multimodal Generative Extraction & Reasoning</h4>
+                <ul>
+                  <li><b>Core Specialization:</b> Broader multimodal understanding spanning documents, images, video recordings, audio transcripts, and unstructured text.</li>
+                  <li><b>Extraction Technique:</b> Combines state-of-the-art vision-language models with natural language extraction prompts and user-defined schemas.</li>
+                  <li><b>Model Customization:</b> Zero-shot / few-shot prompt instructions; understands complex semantic intent, reasoning, and context variations without extensive manual annotation.</li>
+                  <li><b>Optimal Use Case:</b> Diverse Salesforce purchase order packages with irregular supplier formatting, embedded instructions, and unstructured notes.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Foundry vs Standalone -->
+          <div *ngIf="activeArchTab === 'foundry'" class="arch-content-panel">
+            <h3>Azure AI Foundry Requirement & Resource Deployment Model</h3>
+            <p>
+              Mikhail asked whether Content Understanding requires an Azure AI Foundry resource or can operate standalone.
+            </p>
+            <div class="foundry-analysis-card">
+              <div class="analysis-item">
+                <span class="analysis-status ok">Confirmed Architectural Fact</span>
+                <h4>Azure AI Content Understanding is powered by Azure AI Services (Foundry Hub)</h4>
+                <p>
+                  Content Understanding is provisioned through <b>Azure AI Services</b> (ARM resource type <code>Microsoft.CognitiveServices/accounts</code> with kind <code>AIServices</code>). In Azure AI Foundry, this represents the foundational multi-service account.
+                </p>
+              </div>
+
+              <div class="deployment-models-grid">
+                <div class="dep-model-box">
+                  <h5>Deployment Model A: Unified Foundry Project (Recommended)</h5>
+                  <p>Content Understanding is provisioned within an <b>Azure AI Foundry Project</b>. This enables single-pane-of-glass governance, centralized RBAC (Cognitive Services OpenAI Contributor), tracing, and unified connection endpoints (<code>https://&lt;hub&gt;.services.ai.azure.com</code>).</p>
+                </div>
+
+                <div class="dep-model-box">
+                  <h5>Deployment Model B: Standalone Cognitive Service REST API</h5>
+                  <p>Applications (such as our Azure Function) can invoke Content Understanding directly using the Azure Cognitive Services regional endpoint and API Key or Managed Identity, without strictly requiring the Azure AI Foundry portal UI once the resource is provisioned.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Guardrail Applicability -->
+          <div *ngIf="activeArchTab === 'guardrails'" class="arch-content-panel">
+            <h3>In-Flight Guardrails: File-Based Scanning vs. Post-Generation Filtering</h3>
+            <p>
+              Arrow asked whether safety controls can protect the Content Understanding workflow during parsing, rather than only when prompting an LLM.
+            </p>
+            <div class="guardrail-workflow-diag">
+              <div class="diag-stage">
+                <div class="stage-circle">1</div>
+                <h5>Salesforce Ingestion</h5>
+                <p>Multipart PO files ingested via HTTP trigger</p>
+              </div>
+              <div class="diag-arrow">➡️</div>
+              <div class="diag-stage">
+                <div class="stage-circle">2</div>
+                <h5>Content Understanding</h5>
+                <p>Multimodal layout & schema extraction</p>
+              </div>
+              <div class="diag-arrow">➡️</div>
+              <div class="diag-stage stage-highlight">
+                <div class="stage-circle">3</div>
+                <h5>In-Flight Content Safety</h5>
+                <p>Prompt Shield, PII Masking, ITAR Blocklists</p>
+              </div>
+              <div class="diag-arrow">➡️</div>
+              <div class="diag-stage">
+                <div class="stage-circle">4</div>
+                <h5>Conditional Routing</h5>
+                <p>Approved to SAP S/4HANA or Quarantined</p>
+              </div>
+            </div>
+            <div class="guardrail-benefits">
+              <ul>
+                <li><b>Defense-in-Depth:</b> Malicious prompt injections embedded in purchase orders (e.g. Scenario 3) are detected and neutralized <i>before</i> they can poison downstream automated workflows, SAP ERP databases, or agents.</li>
+                <li><b>Regulatory Compliance:</b> PII leakage (SSNs, credit card numbers in delivery notes) is detected in-memory and redacted before persisting to ERP storage.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab 4: Large Context Handling -->
+          <div *ngIf="activeArchTab === 'largeContext'" class="arch-content-panel">
+            <h3>Large-Context Handling & Sliding Window Best Practices</h3>
+            <p>
+              For enterprise high-volume orders and 10+ page catalog contracts (such as Scenario 6), Content Safety enforces token limits and sliding windows.
+            </p>
+            <div class="large-context-grid">
+              <div class="lc-card">
+                <h4>1. Recursive Document Chunking</h4>
+                <p>Long documents are broken into 250-token semantic chunks with a 50-token rolling overlap to prevent injection keywords from splitting across chunk boundaries.</p>
+              </div>
+              <div class="lc-card">
+                <h4>2. Parallelized Guardrail Scanning</h4>
+                <p>Chunks are submitted concurrently to Azure AI Content Safety Prompt Shield and text analysis endpoints, minimizing pipeline latency overhead.</p>
+              </div>
+              <div class="lc-card">
+                <h4>3. Max-Severity Risk Synthesis</h4>
+                <p>Any individual chunk containing an injection payload or high-severity violation triggers document quarantine, protecting downstream enterprise systems.</p>
+              </div>
+            </div>
+            <div class="lc-ref-box">
+              <span>Reference Architecture Repository:</span>
+              <a href="https://github.com/csdmichael/AI-Content-Safety-POC/tree/main/large-context" target="_blank">
+                https://github.com/csdmichael/AI-Content-Safety-POC/tree/main/large-context
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </ion-content>
+
+  <!-- Mobile Bottom Navigation Bar (Visible only on mobile layout) -->
+  <div class="mobile-bottom-nav" *ngIf="layoutMode === 'mobile'">
+    <button class="nav-tab-btn" [class.active]="activeMobileTab === 'ingest'" (click)="setMobileTab('ingest')">
+      <span class="tab-icon">📥</span>
+      <span class="tab-label">Ingest</span>
+    </button>
+    <button class="nav-tab-btn" [class.active]="activeMobileTab === 'pipeline'" (click)="setMobileTab('pipeline')">
+      <span class="tab-icon">⚙️</span>
+      <span class="tab-label">Extraction</span>
+    </button>
+    <button class="nav-tab-btn" [class.active]="activeMobileTab === 'guardrails'" (click)="setMobileTab('guardrails')">
+      <span class="tab-icon">🛡️</span>
+      <span class="tab-label">Guardrails</span>
+    </button>
+    <button class="nav-tab-btn" [class.active]="activeMobileTab === 'architecture'" (click)="setMobileTab('architecture')">
+      <span class="tab-icon">📚</span>
+      <span class="tab-label">Architecture</span>
+    </button>
+  </div>
+
+  <!-- Global Footer -->
+  <ion-footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span class="author-title">Michael Yaacoub | Sr Solution Engineer</span>
+        <span class="footer-dot">•</span>
+        <span class="footer-sub">Microsoft Customer Success & Enterprise AI Architecture</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://learn.microsoft.com/azure/ai-services/content-understanding/" target="_blank" class="footer-link">Content Understanding Docs</a>
+        <a href="https://learn.microsoft.com/azure/ai-services/content-safety/" target="_blank" class="footer-link">Content Safety Docs</a>
+        <a href="https://github.com/csdmichael/AI-Content-Safety-POC/tree/main/large-context" target="_blank" class="footer-link">Large Context Reference</a>
+      </div>
+    </div>
+  </ion-footer>
+</ion-app>

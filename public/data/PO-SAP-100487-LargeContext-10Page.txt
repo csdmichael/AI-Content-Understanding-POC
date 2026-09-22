@@ -1,0 +1,36 @@
+=== SAP S/4HANA PURCHASE ORDER: PO-SAP-100487 ===
+Title: Large Context Multi-Page Catalog Order (50+ Lines)
+Date: 2026-09-22 | Delivery: 2026-11-01
+Vendor: Apex Component Technologies Inc. (VEND-884021-US)
+Buyer: Apex Global Automotive Tier-1 Manufacturing (David Chen (Materials & Production Planning))
+Total Amount: $1,165,000.00 USD
+
+LINE ITEMS:
+  Pos 00010: CMP-1037-X - Automotive Grade Component Lot #01 AEC-Q200 Qualified Part | Qty: 1500 | Unit: $0.80 | Total: $1,200.00
+  Pos 00020: CMP-1074-X - Automotive Grade Component Lot #02 AEC-Q200 Qualified Part | Qty: 2000 | Unit: $1.15 | Total: $2,300.00
+  Pos 00030: CMP-1111-X - Automotive Grade Component Lot #03 AEC-Q200 Qualified Part | Qty: 2500 | Unit: $1.50 | Total: $3,750.00
+  Pos 00040: CMP-1148-X - Automotive Grade Component Lot #04 AEC-Q200 Qualified Part | Qty: 3000 | Unit: $1.85 | Total: $5,550.00
+  Pos 00050: CMP-1185-X - Automotive Grade Component Lot #05 AEC-Q200 Qualified Part | Qty: 3500 | Unit: $2.20 | Total: $7,700.00
+  Pos 00060: CMP-1222-X - Automotive Grade Component Lot #06 AEC-Q200 Qualified Part | Qty: 4000 | Unit: $2.55 | Total: $10,200.00
+  Pos 00070: CMP-1259-X - Automotive Grade Component Lot #07 AEC-Q200 Qualified Part | Qty: 4500 | Unit: $2.90 | Total: $13,050.00
+  Pos 00080: CMP-1296-X - Automotive Grade Component Lot #08 AEC-Q200 Qualified Part | Qty: 5000 | Unit: $3.25 | Total: $16,250.00
+  Pos 00090: CMP-1333-X - Automotive Grade Component Lot #09 AEC-Q200 Qualified Part | Qty: 5500 | Unit: $3.60 | Total: $19,800.00
+  Pos 00100: CMP-1370-X - Automotive Grade Component Lot #10 AEC-Q200 Qualified Part | Qty: 6000 | Unit: $3.95 | Total: $23,700.00
+  Pos 00110: CMP-1407-X - Automotive Grade Component Lot #11 AEC-Q200 Qualified Part | Qty: 6500 | Unit: $4.30 | Total: $27,950.00
+  Pos 00120: CMP-1444-X - Automotive Grade Component Lot #12 AEC-Q200 Qualified Part | Qty: 7000 | Unit: $4.65 | Total: $32,550.00
+  Pos 00130: CMP-1481-X - Automotive Grade Component Lot #13 AEC-Q200 Qualified Part | Qty: 7500 | Unit: $5.00 | Total: $37,500.00
+  Pos 00140: CMP-1518-X - Automotive Grade Component Lot #14 AEC-Q200 Qualified Part | Qty: 8000 | Unit: $5.35 | Total: $42,800.00
+  Pos 00150: CMP-1555-X - Automotive Grade Component Lot #15 AEC-Q200 Qualified Part | Qty: 8500 | Unit: $5.70 | Total: $48,450.00
+  Pos 00160: CMP-1592-X - Automotive Grade Component Lot #16 AEC-Q200 Qualified Part | Qty: 9000 | Unit: $6.05 | Total: $54,450.00
+  Pos 00170: CMP-1629-X - Automotive Grade Component Lot #17 AEC-Q200 Qualified Part | Qty: 9500 | Unit: $6.40 | Total: $60,800.00
+  Pos 00180: CMP-1666-X - Automotive Grade Component Lot #18 AEC-Q200 Qualified Part | Qty: 10000 | Unit: $6.75 | Total: $67,500.00
+  Pos 00190: CMP-1703-X - Automotive Grade Component Lot #19 AEC-Q200 Qualified Part | Qty: 10500 | Unit: $7.10 | Total: $74,550.00
+  Pos 00200: CMP-1740-X - Automotive Grade Component Lot #20 AEC-Q200 Qualified Part | Qty: 11000 | Unit: $7.45 | Total: $81,950.00
+  Pos 00210: CMP-1777-X - Automotive Grade Component Lot #21 AEC-Q200 Qualified Part | Qty: 11500 | Unit: $7.80 | Total: $89,700.00
+  Pos 00220: CMP-1814-X - Automotive Grade Component Lot #22 AEC-Q200 Qualified Part | Qty: 12000 | Unit: $8.15 | Total: $97,800.00
+  Pos 00230: CMP-1851-X - Automotive Grade Component Lot #23 AEC-Q200 Qualified Part | Qty: 12500 | Unit: $8.50 | Total: $106,250.00
+  Pos 00240: CMP-1888-X - Automotive Grade Component Lot #24 AEC-Q200 Qualified Part | Qty: 13000 | Unit: $8.85 | Total: $115,050.00
+  Pos 00250: CMP-1925-X - Automotive Grade Component Lot #25 AEC-Q200 Qualified Part | Qty: 13500 | Unit: $9.20 | Total: $124,200.00
+
+SPECIAL INSTRUCTIONS / NOTES:
+Extended procurement contract. Requires complete 10-page bill-of-materials parsing, automotive PPAP Level 3 documentation, material test certificates for all lots, and compliance with AI Content Safety large-context token chunking windowing architecture.
