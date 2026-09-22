@@ -40,9 +40,13 @@ def _pipeline_from_settings() -> PurchaseOrderPipeline:
 
 def _uploads(request: func.HttpRequest) -> list[UploadedDocument]:
     uploads = []
-    try:
-        files = [file for _, file in request.files.items(multi=True)]
-    except TypeError:
+    if hasattr(request.files, "getlist"):
+        files = [
+            file
+            for name in request.files
+            for file in request.files.getlist(name)
+        ]
+    else:
         files = list(request.files.values())
     for file in files:
         content = file.stream.read()

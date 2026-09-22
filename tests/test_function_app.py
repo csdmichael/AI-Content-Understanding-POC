@@ -18,10 +18,11 @@ class FakeFiles:
     def __init__(self, files):
         self.files = files
 
-    def items(self, multi=False):
-        if multi:
-            return [("files", file) for file in self.files]
-        return [("files", self.files[-1])]
+    def __iter__(self):
+        return iter(["files"])
+
+    def getlist(self, name):
+        return self.files
 
 
 class ValuesOnlyFiles:

@@ -52,6 +52,24 @@ class PipelineTests(unittest.TestCase):
         )
         self.assertEqual(fields, {"Vendor": "Contoso", "Lines": [{"Quantity": 3}]})
 
+    def test_preserves_fields_from_every_content_block(self):
+        fields = extract_fields(
+            {
+                "result": {
+                    "contents": [
+                        {"fields": {"Vendor": {"valueString": "Contoso"}}},
+                        {
+                            "fields": {
+                                "Vendor": {"valueString": "Fabrikam"},
+                                "Total": {"valueNumber": 10},
+                            }
+                        },
+                    ]
+                }
+            }
+        )
+        self.assertEqual(fields, {"Vendor": ["Contoso", "Fabrikam"], "Total": 10})
+
     def test_approved_document_includes_fields(self):
         safety = FakeSafety()
         pipeline = PurchaseOrderPipeline(

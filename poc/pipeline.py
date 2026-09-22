@@ -36,10 +36,19 @@ def _field_value(field: Any) -> Any:
 def extract_fields(operation: dict) -> dict:
     result = operation.get("result", operation)
     contents = result.get("contents") or []
-    if not contents:
-        return {}
-    fields = contents[0].get("fields") or {}
-    return {name: _field_value(field) for name, field in fields.items()}
+    extracted = {}
+    repeated = set()
+    for content in contents:
+        for name, field in (content.get("fields") or {}).items():
+            value = _field_value(field)
+            if name not in extracted:
+                extracted[name] = value
+            elif name in repeated:
+                extracted[name].append(value)
+            else:
+                extracted[name] = [extracted[name], value]
+                repeated.add(name)
+    return extracted
 
 
 def _text_values(value: Any, path: str = ""):
@@ -55,6 +64,8 @@ def _text_values(value: Any, path: str = ""):
 
 
 class PurchaseOrderPipeline:
+    """Block a document when any text severity is at least the threshold."""
+
     def __init__(
         self,
         understanding: ContentUnderstandingClient,
@@ -62,7 +73,7 @@ class PurchaseOrderPipeline:
         threshold: int = 2,
     ):
         if threshold not in ALLOWED_THRESHOLDS:
-            raise ValueError("Safety threshold must be one of 0, 2, 4, or 6")
+            raise ValueError(f"Safety threshold must be one of {ALLOWED_THRESHOLDS}")
         self.understanding = understanding
         self.safety = safety
         self.threshold = threshold

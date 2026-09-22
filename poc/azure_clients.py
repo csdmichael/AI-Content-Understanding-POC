@@ -66,14 +66,12 @@ class ContentUnderstandingClient:
         if status != 202:
             return body
 
-        operation_url = headers.get("Operation-Location") or headers.get(
-            "operation-location"
-        )
+        operation_headers = {key.lower(): value for key, value in headers.items()}
+        operation_url = operation_headers.get("operation-location")
         if not operation_url:
             raise AzureServiceError("Content Understanding omitted Operation-Location")
 
-        for _ in range(self.max_polls):
-            self.sleep(self.poll_interval)
+        for attempt in range(self.max_polls):
             poll = Request(
                 operation_url,
                 headers={"Ocp-Apim-Subscription-Key": self.key},
@@ -90,6 +88,8 @@ class ContentUnderstandingClient:
                 raise AzureServiceError(
                     f"Content Understanding operation {operation_status}"
                 )
+            if attempt < self.max_polls - 1:
+                self.sleep(self.poll_interval)
         raise AzureServiceError("Content Understanding operation timed out")
 
 
