@@ -50,7 +50,14 @@ class PipelineTests(unittest.TestCase):
                 }
             }
         )
-        self.assertEqual(fields, {"Vendor": "Contoso", "Lines": [{"Quantity": 3}]})
+        self.assertEqual(
+            fields,
+            {
+                "contentBlocks": [
+                    {"Vendor": "Contoso", "Lines": [{"Quantity": 3}]}
+                ]
+            },
+        )
 
     def test_preserves_fields_from_every_content_block(self):
         fields = extract_fields(
@@ -85,7 +92,9 @@ class PipelineTests(unittest.TestCase):
         )
         result = pipeline.process(UploadedDocument("po.pdf", "application/pdf", b"pdf"))
         self.assertTrue(result["approved"])
-        self.assertEqual(result["fields"], {"Vendor": "Contoso"})
+        self.assertEqual(
+            result["fields"], {"contentBlocks": [{"Vendor": "Contoso"}]}
+        )
         self.assertEqual(safety.seen, ["Contoso"])
 
     def test_unsafe_document_is_blocked_and_fields_are_not_returned(self):
@@ -113,7 +122,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(safety.seen, ["Contoso"])
         self.assertEqual(
             [check["field"] for check in result["safetyChecks"]],
-            ["Vendor", "BillTo"],
+            ["contentBlocks[0].Vendor", "contentBlocks[0].BillTo"],
         )
 
     def test_invalid_threshold_is_rejected(self):

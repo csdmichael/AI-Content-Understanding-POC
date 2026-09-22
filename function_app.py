@@ -78,8 +78,8 @@ def purchase_orders(request: func.HttpRequest) -> func.HttpResponse:
 
     try:
         pipeline = _pipeline_from_settings()
-    except ValueError as error:
-        return _response({"error": f"Invalid configuration: {error}"}, 500)
+    except ValueError:
+        return _response({"error": "Service is misconfigured"}, 500)
 
     try:
         results = [pipeline.process(document) for document in documents]

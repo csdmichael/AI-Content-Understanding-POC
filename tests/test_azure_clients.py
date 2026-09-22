@@ -11,10 +11,11 @@ from poc.azure_clients import (
 class AzureClientTests(unittest.TestCase):
     def test_content_understanding_posts_file_and_polls_operation(self):
         requests = []
+        sleeps = []
         responses = iter(
             [
                 (202, {"Operation-Location": "https://example.test/operations/1"}, {}),
-                (200, {}, {"status": "Running"}),
+                (200, {"Retry-After": "3"}, {"status": "Running"}),
                 (200, {}, {"status": "Succeeded", "result": {"contents": []}}),
             ]
         )
@@ -28,7 +29,7 @@ class AzureClientTests(unittest.TestCase):
             "key",
             "purchase orders",
             request_json=request_json,
-            sleep=lambda _: None,
+            sleep=sleeps.append,
         )
         result = client.analyze(b"document", "application/pdf")
         self.assertEqual(result["status"], "Succeeded")
@@ -36,6 +37,7 @@ class AzureClientTests(unittest.TestCase):
         self.assertEqual(requests[0].data, b"document")
         self.assertEqual(requests[0].get_header("Content-type"), "application/pdf")
         self.assertEqual(requests[1].full_url, "https://example.test/operations/1")
+        self.assertEqual(sleeps, [3])
 
     def test_content_safety_requests_all_harm_categories(self):
         captured = {}

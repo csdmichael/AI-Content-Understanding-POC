@@ -76,7 +76,7 @@ class ContentUnderstandingClient:
                 operation_url,
                 headers={"Ocp-Apim-Subscription-Key": self.key},
             )
-            poll_status, _, operation = self.request_json(poll, 30)
+            poll_status, poll_headers, operation = self.request_json(poll, 30)
             if poll_status != 200:
                 raise AzureServiceError(
                     f"Unexpected Content Understanding poll status {poll_status}"
@@ -89,7 +89,16 @@ class ContentUnderstandingClient:
                     f"Content Understanding operation {operation_status}"
                 )
             if attempt < self.max_polls - 1:
-                self.sleep(self.poll_interval)
+                normalized_headers = {
+                    key.lower(): value for key, value in poll_headers.items()
+                }
+                try:
+                    delay = max(
+                        0, float(normalized_headers.get("retry-after", self.poll_interval))
+                    )
+                except (TypeError, ValueError):
+                    delay = self.poll_interval
+                self.sleep(delay)
         raise AzureServiceError("Content Understanding operation timed out")
 
 

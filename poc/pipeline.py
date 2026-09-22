@@ -43,8 +43,6 @@ def extract_fields(operation: dict) -> dict:
         }
         for content in contents
     ]
-    if len(blocks) <= 1:
-        return blocks[0] if blocks else {}
     return {"contentBlocks": blocks}
 
 

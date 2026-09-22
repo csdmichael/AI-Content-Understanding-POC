@@ -9,6 +9,8 @@ Each file is analyzed by a configured Content Understanding custom analyzer. Eve
 text value extracted from the analyzer's selected fields is then checked for hate,
 self-harm, sexual, and violent content. A document that meets or exceeds the
 configured severity threshold is rejected, and its extracted fields are not returned.
+Approved fields are grouped under `fields.contentBlocks`, one object per analyzer
+content block.
 
 ## Deployment model and service boundaries
 

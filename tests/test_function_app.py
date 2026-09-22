@@ -91,6 +91,23 @@ class FunctionTests(unittest.TestCase):
         self.assertEqual(response.status_code, 502)
         self.assertEqual(json.loads(response.get_body()), {"error": "Document processing failed"})
 
+    def test_configuration_details_are_not_returned(self):
+        request = type(
+            "Request",
+            (),
+            {
+                "headers": {"content-type": "multipart/form-data"},
+                "files": FakeFiles([FakeFile("one.pdf", b"one")]),
+            },
+        )()
+        with patch(
+            "function_app._pipeline_from_settings",
+            side_effect=ValueError("Missing required setting: SECRET_NAME"),
+        ):
+            response = purchase_orders(request)
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(json.loads(response.get_body()), {"error": "Service is misconfigured"})
+
 
 if __name__ == "__main__":
     unittest.main()
