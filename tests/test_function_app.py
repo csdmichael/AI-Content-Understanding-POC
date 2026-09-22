@@ -18,11 +18,8 @@ class FakeFiles:
     def __init__(self, files):
         self.files = files
 
-    def __iter__(self):
-        return iter(["files"])
-
-    def getlist(self, name):
-        return self.files
+    def lists(self):
+        return [("files", self.files)]
 
 
 class ValuesOnlyFiles:
@@ -71,6 +68,11 @@ class FunctionTests(unittest.TestCase):
         }
         with patch.dict(os.environ, settings, clear=True):
             with self.assertRaisesRegex(ValueError, "must be one of"):
+                _pipeline_from_settings()
+
+        settings["CONTENT_SAFETY_THRESHOLD"] = "3"
+        with patch.dict(os.environ, settings, clear=True):
+            with self.assertRaisesRegex(ValueError, "CONTENT_SAFETY_THRESHOLD"):
                 _pipeline_from_settings()
 
     def test_upstream_error_details_are_not_returned(self):

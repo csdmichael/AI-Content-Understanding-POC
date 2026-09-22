@@ -35,16 +35,20 @@ def _pipeline_from_settings() -> PurchaseOrderPipeline:
         raise ValueError(
             f"CONTENT_SAFETY_THRESHOLD must be one of {ALLOWED_THRESHOLDS}"
         ) from error
+    if threshold not in ALLOWED_THRESHOLDS:
+        raise ValueError(
+            f"CONTENT_SAFETY_THRESHOLD must be one of {ALLOWED_THRESHOLDS}"
+        )
     return PurchaseOrderPipeline(understanding, safety, threshold)
 
 
 def _uploads(request: func.HttpRequest) -> list[UploadedDocument]:
     uploads = []
-    if hasattr(request.files, "getlist"):
+    if hasattr(request.files, "lists"):
         files = [
             file
-            for name in request.files
-            for file in request.files.getlist(name)
+            for _, grouped_files in request.files.lists()
+            for file in grouped_files
         ]
     else:
         files = list(request.files.values())
