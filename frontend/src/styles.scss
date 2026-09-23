@@ -46,3 +46,37 @@ code {
   color: #0b2545;
 }
 
+/* Global Footer Styles - Ensure solid high-contrast dark navy background and crisp readable text */
+ion-footer,
+ion-footer.app-footer,
+.app-footer {
+  --background: #0b2545 !important;
+  --color: #ffffff !important;
+  background-color: #0b2545 !important;
+  background: #0b2545 !important;
+  color: #ffffff !important;
+  border-top: 1px solid #1a3a5e !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.footer-container {
+  background-color: #0b2545 !important;
+  background: #0b2545 !important;
+  color: #ffffff !important;
+}
+
+.author-title {
+  color: #ffffff !important;
+}
+
+.footer-link-highlight {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.footer-link {
+  color: #93c5fd !important;
+}
+
