@@ -22,15 +22,53 @@
   --shadow-elevation: 0 6.4px 14.4px 0 rgba(0,0,0,0.1), 0 1.2px 3.6px 0 rgba(0,0,0,0.08);
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  position: static !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
   font-family: var(--font-family);
   background-color: #f4f6f9;
   color: var(--msft-gray-160);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure ion-app stretches naturally to its content and never clips or disables scrolling */
+ion-app {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: #f4f6f9 !important;
+}
+
+/* Main scrollable content container */
+main.main-content-scroll,
+ion-content.main-content-scroll,
+.main-content-scroll {
+  flex: 1 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+  min-height: calc(100vh - 200px) !important;
+  height: auto !important;
+  max-height: none !important;
+  background-color: #f4f6f9 !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  position: relative !important;
 }
 
 * {

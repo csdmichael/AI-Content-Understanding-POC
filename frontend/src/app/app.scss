@@ -276,12 +276,22 @@
 /* Main Layout Grid & Containers */
 .main-content-scroll {
   --background: #f4f6f9;
+  background-color: #f4f6f9;
+  display: block;
+  width: 100%;
+  flex: 1 0 auto;
+  overflow: visible;
+}
+
+.table-scroll-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .layout-container {
   max-width: 1480px;
   margin: 16px auto;
-  padding: 0 16px;
+  padding: 0 16px 36px 16px;
 }
 
 /* Mode Auto: Native media query responsiveness */
