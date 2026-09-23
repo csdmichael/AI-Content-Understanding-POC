@@ -1,11 +1,12 @@
 === SAP S/4HANA PURCHASE ORDER: PO-SAP-100485 ===
 Title: PII & Financial Data Leakage in Procurement Notes
+Pages: 1
 Date: 2026-09-21 | Delivery: 2026-10-10
 Vendor: Apex Component Technologies Inc. (VEND-884021-US)
 Buyer: Precision Sensor Systems Corp (Edward M. Miller (Logistics Manager))
 Total Amount: $7,900.00 USD
 
-LINE ITEMS:
+LINE ITEMS (2 items):
   Pos 00010: BME688-DIGI-GAS - Digital 4-in-1 Environmental Gas, Pressure, Humidity, Temp Sensor | Qty: 500 | Unit: $9.40 | Total: $4,700.00
   Pos 00020: LSM6DSOXTR - iNEMO 6-Axis Inertial Measurement Unit with Machine Learning Core | Qty: 1000 | Unit: $3.20 | Total: $3,200.00
 

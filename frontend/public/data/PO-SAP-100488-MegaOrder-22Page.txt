@@ -1,0 +1,132 @@
+=== SAP S/4HANA PURCHASE ORDER: PO-SAP-100488 ===
+Title: Ultra-Large Enterprise PO (22 Full Pages, 120+ Lines, Multi-Warehouse)
+Pages: 22
+Date: 2026-09-23 | Delivery: 2026-12-15
+Vendor: Apex Component Technologies Inc. (VEND-884021-US)
+Buyer: Titan Cloud & Autonomous Mobility Systems Inc. (Eleanor Vance & Carlos Mendez (Strategic Sourcing Directors))
+Total Amount: $78,141,840.00 USD
+
+LINE ITEMS (120 items):
+  Pos 00010: TITAN-10023 - Semiconductor Device Subsystem #001 - Military/Automotive Extended Temp Grade Class-B | Qty: 1120 | Unit: $5.75 | Total: $6,440.00
+  Pos 00020: TITAN-10046 - Semiconductor Device Subsystem #002 - Military/Automotive Extended Temp Grade Class-B | Qty: 1240 | Unit: $6.70 | Total: $8,308.00
+  Pos 00030: TITAN-10069 - Semiconductor Device Subsystem #003 - Military/Automotive Extended Temp Grade Class-B | Qty: 1360 | Unit: $7.65 | Total: $10,404.00
+  Pos 00040: TITAN-10092 - Semiconductor Device Subsystem #004 - Military/Automotive Extended Temp Grade Class-B | Qty: 1480 | Unit: $8.60 | Total: $12,728.00
+  Pos 00050: TITAN-10115 - Semiconductor Device Subsystem #005 - Military/Automotive Extended Temp Grade Class-B | Qty: 1600 | Unit: $9.55 | Total: $15,280.00
+  Pos 00060: TITAN-10138 - Semiconductor Device Subsystem #006 - Military/Automotive Extended Temp Grade Class-B | Qty: 1720 | Unit: $10.50 | Total: $18,060.00
+  Pos 00070: TITAN-10161 - Semiconductor Device Subsystem #007 - Military/Automotive Extended Temp Grade Class-B | Qty: 1840 | Unit: $11.45 | Total: $21,068.00
+  Pos 00080: TITAN-10184 - Semiconductor Device Subsystem #008 - Military/Automotive Extended Temp Grade Class-B | Qty: 1960 | Unit: $12.40 | Total: $24,304.00
+  Pos 00090: TITAN-10207 - Semiconductor Device Subsystem #009 - Military/Automotive Extended Temp Grade Class-B | Qty: 2080 | Unit: $13.35 | Total: $27,768.00
+  Pos 00100: TITAN-10230 - Semiconductor Device Subsystem #010 - Military/Automotive Extended Temp Grade Class-B | Qty: 2200 | Unit: $14.30 | Total: $31,460.00
+  Pos 00110: TITAN-10253 - Semiconductor Device Subsystem #011 - Military/Automotive Extended Temp Grade Class-B | Qty: 2320 | Unit: $15.25 | Total: $35,380.00
+  Pos 00120: TITAN-10276 - Semiconductor Device Subsystem #012 - Military/Automotive Extended Temp Grade Class-B | Qty: 2440 | Unit: $16.20 | Total: $39,528.00
+  Pos 00130: TITAN-10299 - Semiconductor Device Subsystem #013 - Military/Automotive Extended Temp Grade Class-B | Qty: 2560 | Unit: $17.15 | Total: $43,904.00
+  Pos 00140: TITAN-10322 - Semiconductor Device Subsystem #014 - Military/Automotive Extended Temp Grade Class-B | Qty: 2680 | Unit: $18.10 | Total: $48,508.00
+  Pos 00150: TITAN-10345 - Semiconductor Device Subsystem #015 - Military/Automotive Extended Temp Grade Class-B | Qty: 2800 | Unit: $19.05 | Total: $53,340.00
+  Pos 00160: TITAN-10368 - Semiconductor Device Subsystem #016 - Military/Automotive Extended Temp Grade Class-B | Qty: 2920 | Unit: $20.00 | Total: $58,400.00
+  Pos 00170: TITAN-10391 - Semiconductor Device Subsystem #017 - Military/Automotive Extended Temp Grade Class-B | Qty: 3040 | Unit: $20.95 | Total: $63,688.00
+  Pos 00180: TITAN-10414 - Semiconductor Device Subsystem #018 - Military/Automotive Extended Temp Grade Class-B | Qty: 3160 | Unit: $21.90 | Total: $69,204.00
+  Pos 00190: TITAN-10437 - Semiconductor Device Subsystem #019 - Military/Automotive Extended Temp Grade Class-B | Qty: 3280 | Unit: $22.85 | Total: $74,948.00
+  Pos 00200: TITAN-10460 - Semiconductor Device Subsystem #020 - Military/Automotive Extended Temp Grade Class-B | Qty: 3400 | Unit: $23.80 | Total: $80,920.00
+  Pos 00210: TITAN-10483 - Semiconductor Device Subsystem #021 - Military/Automotive Extended Temp Grade Class-B | Qty: 3520 | Unit: $24.75 | Total: $87,120.00
+  Pos 00220: TITAN-10506 - Semiconductor Device Subsystem #022 - Military/Automotive Extended Temp Grade Class-B | Qty: 3640 | Unit: $25.70 | Total: $93,548.00
+  Pos 00230: TITAN-10529 - Semiconductor Device Subsystem #023 - Military/Automotive Extended Temp Grade Class-B | Qty: 3760 | Unit: $26.65 | Total: $100,204.00
+  Pos 00240: TITAN-10552 - Semiconductor Device Subsystem #024 - Military/Automotive Extended Temp Grade Class-B | Qty: 3880 | Unit: $27.60 | Total: $107,088.00
+  Pos 00250: TITAN-10575 - Semiconductor Device Subsystem #025 - Military/Automotive Extended Temp Grade Class-B | Qty: 4000 | Unit: $28.55 | Total: $114,200.00
+  Pos 00260: TITAN-10598 - Semiconductor Device Subsystem #026 - Military/Automotive Extended Temp Grade Class-B | Qty: 4120 | Unit: $29.50 | Total: $121,540.00
+  Pos 00270: TITAN-10621 - Semiconductor Device Subsystem #027 - Military/Automotive Extended Temp Grade Class-B | Qty: 4240 | Unit: $30.45 | Total: $129,108.00
+  Pos 00280: TITAN-10644 - Semiconductor Device Subsystem #028 - Military/Automotive Extended Temp Grade Class-B | Qty: 4360 | Unit: $31.40 | Total: $136,904.00
+  Pos 00290: TITAN-10667 - Semiconductor Device Subsystem #029 - Military/Automotive Extended Temp Grade Class-B | Qty: 4480 | Unit: $32.35 | Total: $144,928.00
+  Pos 00300: TITAN-10690 - Semiconductor Device Subsystem #030 - Military/Automotive Extended Temp Grade Class-B | Qty: 4600 | Unit: $33.30 | Total: $153,180.00
+  Pos 00310: TITAN-10713 - Semiconductor Device Subsystem #031 - Military/Automotive Extended Temp Grade Class-B | Qty: 4720 | Unit: $34.25 | Total: $161,660.00
+  Pos 00320: TITAN-10736 - Semiconductor Device Subsystem #032 - Military/Automotive Extended Temp Grade Class-B | Qty: 4840 | Unit: $35.20 | Total: $170,368.00
+  Pos 00330: TITAN-10759 - Semiconductor Device Subsystem #033 - Military/Automotive Extended Temp Grade Class-B | Qty: 4960 | Unit: $36.15 | Total: $179,304.00
+  Pos 00340: TITAN-10782 - Semiconductor Device Subsystem #034 - Military/Automotive Extended Temp Grade Class-B | Qty: 5080 | Unit: $37.10 | Total: $188,468.00
+  Pos 00350: TITAN-10805 - Semiconductor Device Subsystem #035 - Military/Automotive Extended Temp Grade Class-B | Qty: 5200 | Unit: $38.05 | Total: $197,860.00
+  Pos 00360: TITAN-10828 - Semiconductor Device Subsystem #036 - Military/Automotive Extended Temp Grade Class-B | Qty: 5320 | Unit: $39.00 | Total: $207,480.00
+  Pos 00370: TITAN-10851 - Semiconductor Device Subsystem #037 - Military/Automotive Extended Temp Grade Class-B | Qty: 5440 | Unit: $39.95 | Total: $217,328.00
+  Pos 00380: TITAN-10874 - Semiconductor Device Subsystem #038 - Military/Automotive Extended Temp Grade Class-B | Qty: 5560 | Unit: $40.90 | Total: $227,404.00
+  Pos 00390: TITAN-10897 - Semiconductor Device Subsystem #039 - Military/Automotive Extended Temp Grade Class-B | Qty: 5680 | Unit: $41.85 | Total: $237,708.00
+  Pos 00400: TITAN-10920 - Semiconductor Device Subsystem #040 - Military/Automotive Extended Temp Grade Class-B | Qty: 5800 | Unit: $42.80 | Total: $248,240.00
+  Pos 00410: TITAN-10943 - Semiconductor Device Subsystem #041 - Military/Automotive Extended Temp Grade Class-B | Qty: 5920 | Unit: $43.75 | Total: $259,000.00
+  Pos 00420: TITAN-10966 - Semiconductor Device Subsystem #042 - Military/Automotive Extended Temp Grade Class-B | Qty: 6040 | Unit: $44.70 | Total: $269,988.00
+  Pos 00430: TITAN-10989 - Semiconductor Device Subsystem #043 - Military/Automotive Extended Temp Grade Class-B | Qty: 6160 | Unit: $45.65 | Total: $281,204.00
+  Pos 00440: TITAN-11012 - Semiconductor Device Subsystem #044 - Military/Automotive Extended Temp Grade Class-B | Qty: 6280 | Unit: $46.60 | Total: $292,648.00
+  Pos 00450: TITAN-11035 - Semiconductor Device Subsystem #045 - Military/Automotive Extended Temp Grade Class-B | Qty: 6400 | Unit: $47.55 | Total: $304,320.00
+  Pos 00460: TITAN-11058 - Semiconductor Device Subsystem #046 - Military/Automotive Extended Temp Grade Class-B | Qty: 6520 | Unit: $48.50 | Total: $316,220.00
+  Pos 00470: TITAN-11081 - Semiconductor Device Subsystem #047 - Military/Automotive Extended Temp Grade Class-B | Qty: 6640 | Unit: $49.45 | Total: $328,348.00
+  Pos 00480: TITAN-11104 - Semiconductor Device Subsystem #048 - Military/Automotive Extended Temp Grade Class-B | Qty: 6760 | Unit: $50.40 | Total: $340,704.00
+  Pos 00490: TITAN-11127 - Semiconductor Device Subsystem #049 - Military/Automotive Extended Temp Grade Class-B | Qty: 6880 | Unit: $51.35 | Total: $353,288.00
+  Pos 00500: TITAN-11150 - Semiconductor Device Subsystem #050 - Military/Automotive Extended Temp Grade Class-B | Qty: 7000 | Unit: $52.30 | Total: $366,100.00
+  Pos 00510: TITAN-11173 - Semiconductor Device Subsystem #051 - Military/Automotive Extended Temp Grade Class-B | Qty: 7120 | Unit: $53.25 | Total: $379,140.00
+  Pos 00520: TITAN-11196 - Semiconductor Device Subsystem #052 - Military/Automotive Extended Temp Grade Class-B | Qty: 7240 | Unit: $54.20 | Total: $392,408.00
+  Pos 00530: TITAN-11219 - Semiconductor Device Subsystem #053 - Military/Automotive Extended Temp Grade Class-B | Qty: 7360 | Unit: $55.15 | Total: $405,904.00
+  Pos 00540: TITAN-11242 - Semiconductor Device Subsystem #054 - Military/Automotive Extended Temp Grade Class-B | Qty: 7480 | Unit: $56.10 | Total: $419,628.00
+  Pos 00550: TITAN-11265 - Semiconductor Device Subsystem #055 - Military/Automotive Extended Temp Grade Class-B | Qty: 7600 | Unit: $57.05 | Total: $433,580.00
+  Pos 00560: TITAN-11288 - Semiconductor Device Subsystem #056 - Military/Automotive Extended Temp Grade Class-B | Qty: 7720 | Unit: $58.00 | Total: $447,760.00
+  Pos 00570: TITAN-11311 - Semiconductor Device Subsystem #057 - Military/Automotive Extended Temp Grade Class-B | Qty: 7840 | Unit: $58.95 | Total: $462,168.00
+  Pos 00580: TITAN-11334 - Semiconductor Device Subsystem #058 - Military/Automotive Extended Temp Grade Class-B | Qty: 7960 | Unit: $59.90 | Total: $476,804.00
+  Pos 00590: TITAN-11357 - Semiconductor Device Subsystem #059 - Military/Automotive Extended Temp Grade Class-B | Qty: 8080 | Unit: $60.85 | Total: $491,668.00
+  Pos 00600: TITAN-11380 - Semiconductor Device Subsystem #060 - Military/Automotive Extended Temp Grade Class-B | Qty: 8200 | Unit: $61.80 | Total: $506,760.00
+  Pos 00610: TITAN-11403 - Semiconductor Device Subsystem #061 - Military/Automotive Extended Temp Grade Class-B | Qty: 8320 | Unit: $62.75 | Total: $522,080.00
+  Pos 00620: TITAN-11426 - Semiconductor Device Subsystem #062 - Military/Automotive Extended Temp Grade Class-B | Qty: 8440 | Unit: $63.70 | Total: $537,628.00
+  Pos 00630: TITAN-11449 - Semiconductor Device Subsystem #063 - Military/Automotive Extended Temp Grade Class-B | Qty: 8560 | Unit: $64.65 | Total: $553,404.00
+  Pos 00640: TITAN-11472 - Semiconductor Device Subsystem #064 - Military/Automotive Extended Temp Grade Class-B | Qty: 8680 | Unit: $65.60 | Total: $569,408.00
+  Pos 00650: TITAN-11495 - Semiconductor Device Subsystem #065 - Military/Automotive Extended Temp Grade Class-B | Qty: 8800 | Unit: $66.55 | Total: $585,640.00
+  Pos 00660: TITAN-11518 - Semiconductor Device Subsystem #066 - Military/Automotive Extended Temp Grade Class-B | Qty: 8920 | Unit: $67.50 | Total: $602,100.00
+  Pos 00670: TITAN-11541 - Semiconductor Device Subsystem #067 - Military/Automotive Extended Temp Grade Class-B | Qty: 9040 | Unit: $68.45 | Total: $618,788.00
+  Pos 00680: TITAN-11564 - Semiconductor Device Subsystem #068 - Military/Automotive Extended Temp Grade Class-B | Qty: 9160 | Unit: $69.40 | Total: $635,704.00
+  Pos 00690: TITAN-11587 - Semiconductor Device Subsystem #069 - Military/Automotive Extended Temp Grade Class-B | Qty: 9280 | Unit: $70.35 | Total: $652,848.00
+  Pos 00700: TITAN-11610 - Semiconductor Device Subsystem #070 - Military/Automotive Extended Temp Grade Class-B | Qty: 9400 | Unit: $71.30 | Total: $670,220.00
+  Pos 00710: TITAN-11633 - Semiconductor Device Subsystem #071 - Military/Automotive Extended Temp Grade Class-B | Qty: 9520 | Unit: $72.25 | Total: $687,820.00
+  Pos 00720: TITAN-11656 - Semiconductor Device Subsystem #072 - Military/Automotive Extended Temp Grade Class-B | Qty: 9640 | Unit: $73.20 | Total: $705,648.00
+  Pos 00730: TITAN-11679 - Semiconductor Device Subsystem #073 - Military/Automotive Extended Temp Grade Class-B | Qty: 9760 | Unit: $74.15 | Total: $723,704.00
+  Pos 00740: TITAN-11702 - Semiconductor Device Subsystem #074 - Military/Automotive Extended Temp Grade Class-B | Qty: 9880 | Unit: $75.10 | Total: $741,988.00
+  Pos 00750: TITAN-11725 - Semiconductor Device Subsystem #075 - Military/Automotive Extended Temp Grade Class-B | Qty: 10000 | Unit: $76.05 | Total: $760,500.00
+  Pos 00760: TITAN-11748 - Semiconductor Device Subsystem #076 - Military/Automotive Extended Temp Grade Class-B | Qty: 10120 | Unit: $77.00 | Total: $779,240.00
+  Pos 00770: TITAN-11771 - Semiconductor Device Subsystem #077 - Military/Automotive Extended Temp Grade Class-B | Qty: 10240 | Unit: $77.95 | Total: $798,208.00
+  Pos 00780: TITAN-11794 - Semiconductor Device Subsystem #078 - Military/Automotive Extended Temp Grade Class-B | Qty: 10360 | Unit: $78.90 | Total: $817,404.00
+  Pos 00790: TITAN-11817 - Semiconductor Device Subsystem #079 - Military/Automotive Extended Temp Grade Class-B | Qty: 10480 | Unit: $79.85 | Total: $836,828.00
+  Pos 00800: TITAN-11840 - Semiconductor Device Subsystem #080 - Military/Automotive Extended Temp Grade Class-B | Qty: 10600 | Unit: $80.80 | Total: $856,480.00
+  Pos 00810: TITAN-11863 - Semiconductor Device Subsystem #081 - Military/Automotive Extended Temp Grade Class-B | Qty: 10720 | Unit: $81.75 | Total: $876,360.00
+  Pos 00820: TITAN-11886 - Semiconductor Device Subsystem #082 - Military/Automotive Extended Temp Grade Class-B | Qty: 10840 | Unit: $82.70 | Total: $896,468.00
+  Pos 00830: TITAN-11909 - Semiconductor Device Subsystem #083 - Military/Automotive Extended Temp Grade Class-B | Qty: 10960 | Unit: $83.65 | Total: $916,804.00
+  Pos 00840: TITAN-11932 - Semiconductor Device Subsystem #084 - Military/Automotive Extended Temp Grade Class-B | Qty: 11080 | Unit: $84.60 | Total: $937,368.00
+  Pos 00850: TITAN-11955 - Semiconductor Device Subsystem #085 - Military/Automotive Extended Temp Grade Class-B | Qty: 11200 | Unit: $85.55 | Total: $958,160.00
+  Pos 00860: TITAN-11978 - Semiconductor Device Subsystem #086 - Military/Automotive Extended Temp Grade Class-B | Qty: 11320 | Unit: $86.50 | Total: $979,180.00
+  Pos 00870: TITAN-12001 - Semiconductor Device Subsystem #087 - Military/Automotive Extended Temp Grade Class-B | Qty: 11440 | Unit: $87.45 | Total: $1,000,428.00
+  Pos 00880: TITAN-12024 - Semiconductor Device Subsystem #088 - Military/Automotive Extended Temp Grade Class-B | Qty: 11560 | Unit: $88.40 | Total: $1,021,904.00
+  Pos 00890: TITAN-12047 - Semiconductor Device Subsystem #089 - Military/Automotive Extended Temp Grade Class-B | Qty: 11680 | Unit: $89.35 | Total: $1,043,608.00
+  Pos 00900: TITAN-12070 - Semiconductor Device Subsystem #090 - Military/Automotive Extended Temp Grade Class-B | Qty: 11800 | Unit: $90.30 | Total: $1,065,540.00
+  Pos 00910: TITAN-12093 - Semiconductor Device Subsystem #091 - Military/Automotive Extended Temp Grade Class-B | Qty: 11920 | Unit: $91.25 | Total: $1,087,700.00
+  Pos 00920: TITAN-12116 - Semiconductor Device Subsystem #092 - Military/Automotive Extended Temp Grade Class-B | Qty: 12040 | Unit: $92.20 | Total: $1,110,088.00
+  Pos 00930: TITAN-12139 - Semiconductor Device Subsystem #093 - Military/Automotive Extended Temp Grade Class-B | Qty: 12160 | Unit: $93.15 | Total: $1,132,704.00
+  Pos 00940: TITAN-12162 - Semiconductor Device Subsystem #094 - Military/Automotive Extended Temp Grade Class-B | Qty: 12280 | Unit: $94.10 | Total: $1,155,548.00
+  Pos 00950: TITAN-12185 - Semiconductor Device Subsystem #095 - Military/Automotive Extended Temp Grade Class-B | Qty: 12400 | Unit: $95.05 | Total: $1,178,620.00
+  Pos 00960: TITAN-12208 - Semiconductor Device Subsystem #096 - Military/Automotive Extended Temp Grade Class-B | Qty: 12520 | Unit: $96.00 | Total: $1,201,920.00
+  Pos 00970: TITAN-12231 - Semiconductor Device Subsystem #097 - Military/Automotive Extended Temp Grade Class-B | Qty: 12640 | Unit: $96.95 | Total: $1,225,448.00
+  Pos 00980: TITAN-12254 - Semiconductor Device Subsystem #098 - Military/Automotive Extended Temp Grade Class-B | Qty: 12760 | Unit: $97.90 | Total: $1,249,204.00
+  Pos 00990: TITAN-12277 - Semiconductor Device Subsystem #099 - Military/Automotive Extended Temp Grade Class-B | Qty: 12880 | Unit: $98.85 | Total: $1,273,188.00
+  Pos 01000: TITAN-12300 - Semiconductor Device Subsystem #100 - Military/Automotive Extended Temp Grade Class-B | Qty: 13000 | Unit: $99.80 | Total: $1,297,400.00
+  Pos 01010: TITAN-12323 - Semiconductor Device Subsystem #101 - Military/Automotive Extended Temp Grade Class-B | Qty: 13120 | Unit: $100.75 | Total: $1,321,840.00
+  Pos 01020: TITAN-12346 - Semiconductor Device Subsystem #102 - Military/Automotive Extended Temp Grade Class-B | Qty: 13240 | Unit: $101.70 | Total: $1,346,508.00
+  Pos 01030: TITAN-12369 - Semiconductor Device Subsystem #103 - Military/Automotive Extended Temp Grade Class-B | Qty: 13360 | Unit: $102.65 | Total: $1,371,404.00
+  Pos 01040: TITAN-12392 - Semiconductor Device Subsystem #104 - Military/Automotive Extended Temp Grade Class-B | Qty: 13480 | Unit: $103.60 | Total: $1,396,528.00
+  Pos 01050: TITAN-12415 - Semiconductor Device Subsystem #105 - Military/Automotive Extended Temp Grade Class-B | Qty: 13600 | Unit: $104.55 | Total: $1,421,880.00
+  Pos 01060: TITAN-12438 - Semiconductor Device Subsystem #106 - Military/Automotive Extended Temp Grade Class-B | Qty: 13720 | Unit: $105.50 | Total: $1,447,460.00
+  Pos 01070: TITAN-12461 - Semiconductor Device Subsystem #107 - Military/Automotive Extended Temp Grade Class-B | Qty: 13840 | Unit: $106.45 | Total: $1,473,268.00
+  Pos 01080: TITAN-12484 - Semiconductor Device Subsystem #108 - Military/Automotive Extended Temp Grade Class-B | Qty: 13960 | Unit: $107.40 | Total: $1,499,304.00
+  Pos 01090: TITAN-12507 - Semiconductor Device Subsystem #109 - Military/Automotive Extended Temp Grade Class-B | Qty: 14080 | Unit: $108.35 | Total: $1,525,568.00
+  Pos 01100: TITAN-12530 - Semiconductor Device Subsystem #110 - Military/Automotive Extended Temp Grade Class-B | Qty: 14200 | Unit: $109.30 | Total: $1,552,060.00
+  Pos 01110: TITAN-12553 - Semiconductor Device Subsystem #111 - Military/Automotive Extended Temp Grade Class-B | Qty: 14320 | Unit: $110.25 | Total: $1,578,780.00
+  Pos 01120: TITAN-12576 - Semiconductor Device Subsystem #112 - Military/Automotive Extended Temp Grade Class-B | Qty: 14440 | Unit: $111.20 | Total: $1,605,728.00
+  Pos 01130: TITAN-12599 - Semiconductor Device Subsystem #113 - Military/Automotive Extended Temp Grade Class-B | Qty: 14560 | Unit: $112.15 | Total: $1,632,904.00
+  Pos 01140: TITAN-12622 - Semiconductor Device Subsystem #114 - Military/Automotive Extended Temp Grade Class-B | Qty: 14680 | Unit: $113.10 | Total: $1,660,308.00
+  Pos 01150: TITAN-12645 - Semiconductor Device Subsystem #115 - Military/Automotive Extended Temp Grade Class-B | Qty: 14800 | Unit: $114.05 | Total: $1,687,940.00
+  Pos 01160: TITAN-12668 - Semiconductor Device Subsystem #116 - Military/Automotive Extended Temp Grade Class-B | Qty: 14920 | Unit: $115.00 | Total: $1,715,800.00
+  Pos 01170: TITAN-12691 - Semiconductor Device Subsystem #117 - Military/Automotive Extended Temp Grade Class-B | Qty: 15040 | Unit: $115.95 | Total: $1,743,888.00
+  Pos 01180: TITAN-12714 - Semiconductor Device Subsystem #118 - Military/Automotive Extended Temp Grade Class-B | Qty: 15160 | Unit: $116.90 | Total: $1,772,204.00
+  Pos 01190: TITAN-12737 - Semiconductor Device Subsystem #119 - Military/Automotive Extended Temp Grade Class-B | Qty: 15280 | Unit: $117.85 | Total: $1,800,748.00
+  Pos 01200: TITAN-12760 - Semiconductor Device Subsystem #120 - Military/Automotive Extended Temp Grade Class-B | Qty: 15400 | Unit: $118.80 | Total: $1,829,520.00
+
+SPECIAL INSTRUCTIONS / NOTES:
+ULTRA-LARGE SCALE 22-PAGE ENTERPRISE PROCUREMENT CONTRACT: Covers 120+ specialized bill-of-materials items, multi-facility warehouse distribution across Phoenix, Austin, Cambridge, San Jose, and Munich hubs. Full compliance with ISO 9001:2015, AS9120B aerospace quality standards, and Azure AI Content Safety sliding-window guardrail protection (250-token window with 50-token overlap). Automated 3-way matching in SAP S/4HANA upon in-flight safety clearance.

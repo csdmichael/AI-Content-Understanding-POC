@@ -9,6 +9,7 @@
     "High-Value-Auditing"
   ],
   "risk_level": "Low (Audit Required)",
+  "page_target": 2,
   "supplier": {
     "name": "Apex Component Technologies Inc.",
     "division": "Enterprise Compute & Accelerator Systems",
@@ -75,5 +76,6 @@
   "subtotal": 584500.0,
   "tax": 0.0,
   "total": 584500.0,
-  "special_instructions": "ISO 9001:2015 traceability required. Delivery split into two batches: Batch 1 (50%) to Phoenix DC on 2026-10-25; Batch 2 (50%) to Ashburn DC on 2026-11-15. ESD sensitive handling level 3."
+  "special_instructions": "ISO 9001:2015 traceability required. Delivery split into two batches: Batch 1 (50%) to Phoenix DC on 2026-10-25; Batch 2 (50%) to Ashburn DC on 2026-11-15. ESD sensitive handling level 3.",
+  "page_count": 2
 }

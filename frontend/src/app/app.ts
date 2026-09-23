@@ -25,6 +25,12 @@ export class App implements OnInit {
   // Layout switcher: 'auto' | 'desktop' | 'tablet' | 'mobile'
   public layoutMode: 'auto' | 'desktop' | 'tablet' | 'mobile' = 'auto';
 
+  // Main view screen: 'demo' (Interactive PO Pipeline Demo) | 'architecture' (Architecture & Documentation Screen)
+  public currentView: 'demo' | 'architecture' = 'demo';
+
+  // Diagram display format in Architecture screen: 'png' | 'svg'
+  public diagramFormat: 'png' | 'svg' = 'png';
+
   // Navigation tab for tablet/mobile: 'ingest' | 'pipeline' | 'guardrails' | 'architecture'
   public activeMobileTab: 'ingest' | 'pipeline' | 'guardrails' | 'architecture' = 'ingest';
 
@@ -36,11 +42,46 @@ export class App implements OnInit {
   public customFileName = '';
   public customFileContent = '';
 
+  // Size group filter for demo: 'all' | '1-page' | '2-page' | '10-page' | '20-plus-page'
+  public selectedSizeFilter: 'all' | '1-page' | '2-page' | '10-page' | '20-plus-page' = 'all';
+
   // API docs / Swagger endpoint link
   public swaggerUrl = '/api-docs';
   public healthUrl = '/api/v1/health';
 
+  // GitHub & LinkedIn Links
+  public githubRepoUrl = 'https://github.com/csdmichael/AI-Content-Understanding-POC';
+  public linkedInUrl = 'https://www.linkedin.com/in/michael-yaacoub-7a46436/';
+  public githubRepoTooltip = 'csdmichael/AI-Content-Understanding-POC: File-based guardrails POC — applying Azure AI Content Safety to Content Understanding document extraction for Salesforce purchase orders. Reference implementation: Salesforce → Azure Function → Content Understanding → Content Safety-checked field extraction for purchase orders.';
+
   constructor(public apiService: ApiService) {}
+
+  public getSizeGroup(sc: Scenario): '1-page' | '2-page' | '10-page' | '20-plus-page' {
+    const pages = sc.page_count || 1;
+    if (pages >= 20) return '20-plus-page';
+    if (pages >= 10) return '10-page';
+    if (pages >= 2) return '2-page';
+    return '1-page';
+  }
+
+  public getSizeBadge(sc: Scenario): string {
+    const pages = sc.page_count || 1;
+    if (pages >= 20) return `${pages} Pages (Ultra-Large)`;
+    if (pages >= 10) return `${pages} Pages (Large Context)`;
+    if (pages >= 2) return `${pages} Pages (Multi-Page)`;
+    return '1 Page';
+  }
+
+  public get filteredScenarios(): Scenario[] {
+    if (this.selectedSizeFilter === 'all') {
+      return this.scenarios;
+    }
+    return this.scenarios.filter(sc => this.getSizeGroup(sc) === this.selectedSizeFilter);
+  }
+
+  public setSizeFilter(filter: 'all' | '1-page' | '2-page' | '10-page' | '20-plus-page'): void {
+    this.selectedSizeFilter = filter;
+  }
 
   ngOnInit(): void {
     this.apiService.pipelineLogs$.subscribe(logs => this.pipelineLogs = logs);
@@ -165,8 +206,21 @@ export class App implements OnInit {
     this.layoutMode = mode;
   }
 
+  public setView(view: 'demo' | 'architecture'): void {
+    this.currentView = view;
+  }
+
+  public setDiagramFormat(fmt: 'png' | 'svg'): void {
+    this.diagramFormat = fmt;
+  }
+
   public setMobileTab(tab: 'ingest' | 'pipeline' | 'guardrails' | 'architecture'): void {
     this.activeMobileTab = tab;
+    if (tab === 'architecture') {
+      this.currentView = 'architecture';
+    } else {
+      this.currentView = 'demo';
+    }
   }
 
   public setArchTab(tab: 'distinction' | 'foundry' | 'guardrails' | 'largeContext'): void {

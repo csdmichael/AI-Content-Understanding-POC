@@ -7,6 +7,7 @@
   "safety_expected": "PASS",
   "guardrail_flags": [],
   "risk_level": "None (0/7)",
+  "page_target": 1,
   "supplier": {
     "name": "Apex Component Technologies Inc.",
     "division": "Global Industrial Semiconductor Division",
@@ -63,7 +64,7 @@
     {
       "pos": "00040",
       "part_no": "DP83867ERGZ-S2",
-      "desc": "Robust Robust High Immunity Gigabit Ethernet PHY 48-VQFN",
+      "desc": "Robust High Immunity Gigabit Ethernet PHY 48-VQFN",
       "qty": 1200,
       "unit": "EA",
       "price": 5.08,
@@ -73,5 +74,6 @@
   "subtotal": 48320.0,
   "tax": 0.0,
   "total": 48320.0,
-  "special_instructions": "Standard automated warehouse fulfillment. Please attach Certificate of Conformance (CoC) and RoHS-3 compliant declaration with pallet bill of lading. Consignee receipt sign-off required upon delivery."
+  "special_instructions": "Standard automated warehouse fulfillment. Please attach Certificate of Conformance (CoC) and RoHS-3 compliant declaration with pallet bill of lading. Consignee receipt sign-off required upon delivery.",
+  "page_count": 1
 }

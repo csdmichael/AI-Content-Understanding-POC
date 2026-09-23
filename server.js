@@ -33,10 +33,36 @@ try {
   console.warn('Could not load docs/openapi.json:', err.message);
 }
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+// Raw OpenAPI JSON endpoints
+app.get('/api/v1/openapi.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.json(swaggerSpec);
+});
+
+app.get('/api-docs/openapi.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.json(swaggerSpec);
+});
+
+// Swagger UI configuration
+const swaggerOpts = {
   customSiteTitle: "Azure Content Understanding & Content Safety API",
-  customCss: ".swagger-ui .topbar { background-color: #0b2545; }"
-}));
+  customCss: ".swagger-ui .topbar { background-color: #0b2545; } .swagger-ui .topbar .download-url-wrapper { display: none; }",
+  swaggerOptions: {
+    url: "/api/v1/openapi.json",
+    persistAuthorization: true
+  }
+};
+
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', swaggerUi.setup(swaggerSpec, swaggerOpts));
+app.get('/api-docs/*', swaggerUi.setup(swaggerSpec, swaggerOpts));
+
+// Serve raw docs directory for architecture diagrams & documentation
+const docsDir = path.join(__dirname, 'docs');
+if (fs.existsSync(docsDir)) {
+  app.use('/docs', express.static(docsDir));
+}
 
 // Serve raw data directory for PDF/JSON/TXT downloads
 const dataDir = path.join(__dirname, 'data');
@@ -124,7 +150,7 @@ app.get('/api/v1/scenarios/:id', (req, res) => {
  */
 function analyzeContentSafety(text, scenario = {}) {
   const isMalicious = (scenario.safety_expected === 'BLOCKED') || /ignore|override|developer mode|bypass|jailbreak|disregard/i.test(text);
-  const isHighValue = (scenario.total > 100000);
+  const isHighValue = (scenario.guardrail_flags && scenario.guardrail_flags.includes('High-Value-Auditing')) || (scenario.id === 'scenario-2');
   const isPii = /ssn|credit card|visa|cvv|\d{3}-\d{2}-\d{4}|\d{4}-\d{4}-\d{4}-\d{4}/i.test(text);
   const isEmbargo = /itar|eccn|dual-use|radiation-hardened|customs border crossing|gyroscop|radar/i.test(text);
 
@@ -136,8 +162,13 @@ function analyzeContentSafety(text, scenario = {}) {
   const decision = (isMalicious || isPii || isEmbargo) ? 'BLOCKED' : (isHighValue ? 'AUDIT_REQUIRED' : 'APPROVED');
   const riskScore = decision === 'BLOCKED' ? 94 : (decision === 'AUDIT_REQUIRED' ? 32 : 4);
 
-  // Large context calculation
-  const totalTokens = Math.max(350, Math.round(text.length / 4));
+  // Large context calculation based on page count and content length
+  let totalTokens = Math.max(350, Math.round(text.length / 4));
+  if (scenario.page_count && scenario.page_count >= 20) {
+    totalTokens = 3850;
+  } else if (scenario.page_count && scenario.page_count >= 10) {
+    totalTokens = 1750;
+  }
   const chunkSize = 250;
   const overlapTokens = 50;
   const totalChunks = Math.max(1, Math.ceil(totalTokens / (chunkSize - overlapTokens)));
@@ -145,13 +176,14 @@ function analyzeContentSafety(text, scenario = {}) {
   const chunkRisks = [];
   for (let i = 0; i < totalChunks; i++) {
     const isBad = decision === 'BLOCKED' && i === totalChunks - 1;
+    const pageNum = Math.min(scenario.page_count || 1, Math.ceil((i + 1) * ((scenario.page_count || 1) / totalChunks)));
     chunkRisks.push({
       chunkIndex: i + 1,
       tokenStart: i * (chunkSize - overlapTokens),
       tokenEnd: Math.min(totalTokens, (i * (chunkSize - overlapTokens)) + chunkSize),
       riskScore: isBad ? 94 : (isHighValue ? 25 : 3),
       detectedFlags: isBad ? flags : [],
-      snippet: isBad ? '...[TRIGGER] ' + text.substring(0, 60) + '...' : `Chunk #${i + 1}: Line items and procurement verification specs.`
+      snippet: isBad ? '...[TRIGGER] ' + text.substring(0, 60) + '...' : `Chunk #${i + 1} (Page ${pageNum}): Bill of materials line items, delivery schedules & QA verification.`
     });
   }
 

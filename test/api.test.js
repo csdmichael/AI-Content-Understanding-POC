@@ -61,8 +61,22 @@ async function runTests() {
     });
     assert.strictEqual(scenarios.status, 200);
     assert.ok(Array.isArray(scenarios.data));
-    assert.strictEqual(scenarios.data.length, 6);
+    assert.strictEqual(scenarios.data.length, 7);
     console.log(`  -> Found ${scenarios.data.length} scenarios. PASSED`);
+
+    // 2b. Test 22-page Mega PO (Scenario 7)
+    console.log('[TEST 2b] Testing 22-Page Mega PO scenario (Scenario 7)...');
+    const megaPO = await request({
+      hostname: 'localhost',
+      port: 8099,
+      path: '/api/v1/process-po',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }, { scenarioId: 'scenario-7' });
+    assert.strictEqual(megaPO.status, 200);
+    assert.strictEqual(megaPO.data.scenario.safety_scan.decision, 'APPROVED');
+    assert.ok(megaPO.data.scenario.safety_scan.largeContextScan.totalChunks >= 15);
+    console.log(`  -> 22-Page Mega PO processed across ${megaPO.data.scenario.safety_scan.largeContextScan.totalChunks} chunks. PASSED`);
 
     // 3. Process Clean PO (Scenario 1)
     console.log('[TEST 3] Testing Clean PO processing (Scenario 1)...');
@@ -119,6 +133,27 @@ async function runTests() {
     assert.ok(lc.data.totalChunks > 2);
     assert.strictEqual(lc.data.overlapTokens, 50);
     console.log(`  -> Large context processed with ${lc.data.totalChunks} chunks and 50-token overlap. PASSED`);
+
+    // 7. Test OpenAPI spec & Swagger UI endpoints
+    console.log('[TEST 7] Testing /api/v1/openapi.json & /api-docs/...');
+    const openapi = await request({
+      hostname: 'localhost',
+      port: 8099,
+      path: '/api/v1/openapi.json',
+      method: 'GET'
+    });
+    assert.strictEqual(openapi.status, 200);
+    assert.strictEqual(openapi.data.openapi, '3.0.3');
+
+    const swagger = await request({
+      hostname: 'localhost',
+      port: 8099,
+      path: '/api-docs/',
+      method: 'GET'
+    });
+    assert.strictEqual(swagger.status, 200);
+    assert.ok(swagger.data.includes('swagger-ui') || swagger.data.includes('Swagger UI'));
+    console.log('  -> Swagger UI & OpenAPI JSON endpoints verified. PASSED');
 
     console.log('=== ALL TESTS PASSED SUCCESSFULLY ===');
     process.exit(0);

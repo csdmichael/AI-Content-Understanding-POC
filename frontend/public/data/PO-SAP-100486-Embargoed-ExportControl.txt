@@ -1,11 +1,12 @@
 === SAP S/4HANA PURCHASE ORDER: PO-SAP-100486 ===
 Title: Restricted Dual-Use Export Control / Embargoed Goods
+Pages: 1
 Date: 2026-09-21 | Delivery: 2026-09-28
 Vendor: Apex Component Technologies Inc. (VEND-884021-US)
 Buyer: Vostok Geospatial Navigation Consortia (Boris K. (Intermediary Agent))
 Total Amount: $298,600.00 USD
 
-LINE ITEMS:
+LINE ITEMS (2 items):
   Pos 00010: RAD-GYRO-SP-10 - Radiation-Hardened Space-Grade Tactical Inertial Gyroscope (ECCN 7A101) | Qty: 10 | Unit: $14,500.00 | Total: $145,000.00
   Pos 00020: MIL-RADAR-SYNTH - ITAR Category XII Multi-GHz Microwave Radar Frequency Synthesizer Module | Qty: 8 | Unit: $19,200.00 | Total: $153,600.00
 

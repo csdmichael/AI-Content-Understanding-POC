@@ -1,36 +1,62 @@
 === SAP S/4HANA PURCHASE ORDER: PO-SAP-100487 ===
-Title: Large Context Multi-Page Catalog Order (50+ Lines)
+Title: Large Context Multi-Page Catalog Order (10 Full Pages, 50 Lines)
+Pages: 10
 Date: 2026-09-22 | Delivery: 2026-11-01
 Vendor: Apex Component Technologies Inc. (VEND-884021-US)
 Buyer: Apex Global Automotive Tier-1 Manufacturing (David Chen (Materials & Production Planning))
-Total Amount: $1,165,000.00 USD
+Total Amount: $6,500,000.00 USD
 
-LINE ITEMS:
-  Pos 00010: CMP-1037-X - Automotive Grade Component Lot #01 AEC-Q200 Qualified Part | Qty: 1500 | Unit: $0.80 | Total: $1,200.00
-  Pos 00020: CMP-1074-X - Automotive Grade Component Lot #02 AEC-Q200 Qualified Part | Qty: 2000 | Unit: $1.15 | Total: $2,300.00
-  Pos 00030: CMP-1111-X - Automotive Grade Component Lot #03 AEC-Q200 Qualified Part | Qty: 2500 | Unit: $1.50 | Total: $3,750.00
-  Pos 00040: CMP-1148-X - Automotive Grade Component Lot #04 AEC-Q200 Qualified Part | Qty: 3000 | Unit: $1.85 | Total: $5,550.00
-  Pos 00050: CMP-1185-X - Automotive Grade Component Lot #05 AEC-Q200 Qualified Part | Qty: 3500 | Unit: $2.20 | Total: $7,700.00
-  Pos 00060: CMP-1222-X - Automotive Grade Component Lot #06 AEC-Q200 Qualified Part | Qty: 4000 | Unit: $2.55 | Total: $10,200.00
-  Pos 00070: CMP-1259-X - Automotive Grade Component Lot #07 AEC-Q200 Qualified Part | Qty: 4500 | Unit: $2.90 | Total: $13,050.00
-  Pos 00080: CMP-1296-X - Automotive Grade Component Lot #08 AEC-Q200 Qualified Part | Qty: 5000 | Unit: $3.25 | Total: $16,250.00
-  Pos 00090: CMP-1333-X - Automotive Grade Component Lot #09 AEC-Q200 Qualified Part | Qty: 5500 | Unit: $3.60 | Total: $19,800.00
-  Pos 00100: CMP-1370-X - Automotive Grade Component Lot #10 AEC-Q200 Qualified Part | Qty: 6000 | Unit: $3.95 | Total: $23,700.00
-  Pos 00110: CMP-1407-X - Automotive Grade Component Lot #11 AEC-Q200 Qualified Part | Qty: 6500 | Unit: $4.30 | Total: $27,950.00
-  Pos 00120: CMP-1444-X - Automotive Grade Component Lot #12 AEC-Q200 Qualified Part | Qty: 7000 | Unit: $4.65 | Total: $32,550.00
-  Pos 00130: CMP-1481-X - Automotive Grade Component Lot #13 AEC-Q200 Qualified Part | Qty: 7500 | Unit: $5.00 | Total: $37,500.00
-  Pos 00140: CMP-1518-X - Automotive Grade Component Lot #14 AEC-Q200 Qualified Part | Qty: 8000 | Unit: $5.35 | Total: $42,800.00
-  Pos 00150: CMP-1555-X - Automotive Grade Component Lot #15 AEC-Q200 Qualified Part | Qty: 8500 | Unit: $5.70 | Total: $48,450.00
-  Pos 00160: CMP-1592-X - Automotive Grade Component Lot #16 AEC-Q200 Qualified Part | Qty: 9000 | Unit: $6.05 | Total: $54,450.00
-  Pos 00170: CMP-1629-X - Automotive Grade Component Lot #17 AEC-Q200 Qualified Part | Qty: 9500 | Unit: $6.40 | Total: $60,800.00
-  Pos 00180: CMP-1666-X - Automotive Grade Component Lot #18 AEC-Q200 Qualified Part | Qty: 10000 | Unit: $6.75 | Total: $67,500.00
-  Pos 00190: CMP-1703-X - Automotive Grade Component Lot #19 AEC-Q200 Qualified Part | Qty: 10500 | Unit: $7.10 | Total: $74,550.00
-  Pos 00200: CMP-1740-X - Automotive Grade Component Lot #20 AEC-Q200 Qualified Part | Qty: 11000 | Unit: $7.45 | Total: $81,950.00
-  Pos 00210: CMP-1777-X - Automotive Grade Component Lot #21 AEC-Q200 Qualified Part | Qty: 11500 | Unit: $7.80 | Total: $89,700.00
-  Pos 00220: CMP-1814-X - Automotive Grade Component Lot #22 AEC-Q200 Qualified Part | Qty: 12000 | Unit: $8.15 | Total: $97,800.00
-  Pos 00230: CMP-1851-X - Automotive Grade Component Lot #23 AEC-Q200 Qualified Part | Qty: 12500 | Unit: $8.50 | Total: $106,250.00
-  Pos 00240: CMP-1888-X - Automotive Grade Component Lot #24 AEC-Q200 Qualified Part | Qty: 13000 | Unit: $8.85 | Total: $115,050.00
-  Pos 00250: CMP-1925-X - Automotive Grade Component Lot #25 AEC-Q200 Qualified Part | Qty: 13500 | Unit: $9.20 | Total: $124,200.00
+LINE ITEMS (50 items):
+  Pos 00010: AEC-AUTO-1013 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #1 | Qty: 2250 | Unit: $1.70 | Total: $3,825.00
+  Pos 00020: AEC-AUTO-1026 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #2 | Qty: 2500 | Unit: $2.15 | Total: $5,375.00
+  Pos 00030: AEC-AUTO-1039 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #3 | Qty: 2750 | Unit: $2.60 | Total: $7,150.00
+  Pos 00040: AEC-AUTO-1052 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #4 | Qty: 3000 | Unit: $3.05 | Total: $9,150.00
+  Pos 00050: AEC-AUTO-1065 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #5 | Qty: 3250 | Unit: $3.50 | Total: $11,375.00
+  Pos 00060: AEC-AUTO-1078 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #6 | Qty: 3500 | Unit: $3.95 | Total: $13,825.00
+  Pos 00070: AEC-AUTO-1091 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #7 | Qty: 3750 | Unit: $4.40 | Total: $16,500.00
+  Pos 00080: AEC-AUTO-1104 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #8 | Qty: 4000 | Unit: $4.85 | Total: $19,400.00
+  Pos 00090: AEC-AUTO-1117 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #9 | Qty: 4250 | Unit: $5.30 | Total: $22,525.00
+  Pos 00100: AEC-AUTO-1130 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #10 | Qty: 4500 | Unit: $5.75 | Total: $25,875.00
+  Pos 00110: AEC-AUTO-1143 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #11 | Qty: 4750 | Unit: $6.20 | Total: $29,450.00
+  Pos 00120: AEC-AUTO-1156 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #12 | Qty: 5000 | Unit: $6.65 | Total: $33,250.00
+  Pos 00130: AEC-AUTO-1169 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #13 | Qty: 5250 | Unit: $7.10 | Total: $37,275.00
+  Pos 00140: AEC-AUTO-1182 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #14 | Qty: 5500 | Unit: $7.55 | Total: $41,525.00
+  Pos 00150: AEC-AUTO-1195 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #15 | Qty: 5750 | Unit: $8.00 | Total: $46,000.00
+  Pos 00160: AEC-AUTO-1208 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #16 | Qty: 6000 | Unit: $8.45 | Total: $50,700.00
+  Pos 00170: AEC-AUTO-1221 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #17 | Qty: 6250 | Unit: $8.90 | Total: $55,625.00
+  Pos 00180: AEC-AUTO-1234 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #18 | Qty: 6500 | Unit: $9.35 | Total: $60,775.00
+  Pos 00190: AEC-AUTO-1247 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #19 | Qty: 6750 | Unit: $9.80 | Total: $66,150.00
+  Pos 00200: AEC-AUTO-1260 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #20 | Qty: 7000 | Unit: $10.25 | Total: $71,750.00
+  Pos 00210: AEC-AUTO-1273 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #21 | Qty: 7250 | Unit: $10.70 | Total: $77,575.00
+  Pos 00220: AEC-AUTO-1286 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #22 | Qty: 7500 | Unit: $11.15 | Total: $83,625.00
+  Pos 00230: AEC-AUTO-1299 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #23 | Qty: 7750 | Unit: $11.60 | Total: $89,900.00
+  Pos 00240: AEC-AUTO-1312 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #24 | Qty: 8000 | Unit: $12.05 | Total: $96,400.00
+  Pos 00250: AEC-AUTO-1325 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #25 | Qty: 8250 | Unit: $12.50 | Total: $103,125.00
+  Pos 00260: AEC-AUTO-1338 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #26 | Qty: 8500 | Unit: $12.95 | Total: $110,075.00
+  Pos 00270: AEC-AUTO-1351 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #27 | Qty: 8750 | Unit: $13.40 | Total: $117,250.00
+  Pos 00280: AEC-AUTO-1364 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #28 | Qty: 9000 | Unit: $13.85 | Total: $124,650.00
+  Pos 00290: AEC-AUTO-1377 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #29 | Qty: 9250 | Unit: $14.30 | Total: $132,275.00
+  Pos 00300: AEC-AUTO-1390 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #30 | Qty: 9500 | Unit: $14.75 | Total: $140,125.00
+  Pos 00310: AEC-AUTO-1403 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #31 | Qty: 9750 | Unit: $15.20 | Total: $148,200.00
+  Pos 00320: AEC-AUTO-1416 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #32 | Qty: 10000 | Unit: $15.65 | Total: $156,500.00
+  Pos 00330: AEC-AUTO-1429 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #33 | Qty: 10250 | Unit: $16.10 | Total: $165,025.00
+  Pos 00340: AEC-AUTO-1442 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #34 | Qty: 10500 | Unit: $16.55 | Total: $173,775.00
+  Pos 00350: AEC-AUTO-1455 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #35 | Qty: 10750 | Unit: $17.00 | Total: $182,750.00
+  Pos 00360: AEC-AUTO-1468 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #36 | Qty: 11000 | Unit: $17.45 | Total: $191,950.00
+  Pos 00370: AEC-AUTO-1481 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #37 | Qty: 11250 | Unit: $17.90 | Total: $201,375.00
+  Pos 00380: AEC-AUTO-1494 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #38 | Qty: 11500 | Unit: $18.35 | Total: $211,025.00
+  Pos 00390: AEC-AUTO-1507 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #39 | Qty: 11750 | Unit: $18.80 | Total: $220,900.00
+  Pos 00400: AEC-AUTO-1520 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #40 | Qty: 12000 | Unit: $19.25 | Total: $231,000.00
+  Pos 00410: AEC-AUTO-1533 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #41 | Qty: 12250 | Unit: $19.70 | Total: $241,325.00
+  Pos 00420: AEC-AUTO-1546 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #42 | Qty: 12500 | Unit: $20.15 | Total: $251,875.00
+  Pos 00430: AEC-AUTO-1559 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #43 | Qty: 12750 | Unit: $20.60 | Total: $262,650.00
+  Pos 00440: AEC-AUTO-1572 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #44 | Qty: 13000 | Unit: $21.05 | Total: $273,650.00
+  Pos 00450: AEC-AUTO-1585 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #45 | Qty: 13250 | Unit: $21.50 | Total: $284,875.00
+  Pos 00460: AEC-AUTO-1598 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #46 | Qty: 13500 | Unit: $21.95 | Total: $296,325.00
+  Pos 00470: AEC-AUTO-1611 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #47 | Qty: 13750 | Unit: $22.40 | Total: $308,000.00
+  Pos 00480: AEC-AUTO-1624 - Automotive Micro-Controller / Power IC Grade-1 SMT Reel #48 | Qty: 14000 | Unit: $22.85 | Total: $319,900.00
+  Pos 00490: AEC-AUTO-1637 - Automotive Micro-Controller / Power IC Grade-2 SMT Reel #49 | Qty: 14250 | Unit: $23.30 | Total: $332,025.00
+  Pos 00500: AEC-AUTO-1650 - Automotive Micro-Controller / Power IC Grade-3 SMT Reel #50 | Qty: 14500 | Unit: $23.75 | Total: $344,375.00
 
 SPECIAL INSTRUCTIONS / NOTES:
-Extended procurement contract. Requires complete 10-page bill-of-materials parsing, automotive PPAP Level 3 documentation, material test certificates for all lots, and compliance with AI Content Safety large-context token chunking windowing architecture.
+Extended automotive procurement contract. Requires complete 10-page bill-of-materials parsing, automotive PPAP Level 3 documentation, material test certificates for all lots, and compliance with AI Content Safety large-context token chunking windowing architecture.

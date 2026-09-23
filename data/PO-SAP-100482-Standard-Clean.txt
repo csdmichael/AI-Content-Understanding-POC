@@ -1,15 +1,16 @@
 === SAP S/4HANA PURCHASE ORDER: PO-SAP-100482 ===
 Title: Standard Clean Electronic Components PO
+Pages: 1
 Date: 2026-09-15 | Delivery: 2026-10-05
 Vendor: Apex Component Technologies Inc. (VEND-884021-US)
 Buyer: Quantum Dynamics Systems LLC (Sarah Jenkins (Lead Procurement Eng.))
 Total Amount: $48,320.00 USD
 
-LINE ITEMS:
+LINE ITEMS (4 items):
   Pos 00010: STM32H753XIH6 - High-perf ARM Cortex-M7 MCU 480MHz 2MB Flash TFBGA-240 | Qty: 2500 | Unit: $12.80 | Total: $32,000.00
   Pos 00020: C1206C106K4RACTU - SMD MLCC Ceramic Capacitor 10uF 16V X7R 1206 10% | Qty: 20000 | Unit: $0.14 | Total: $2,800.00
   Pos 00030: TPS7A4700RGWR - Ultra-Low-Noise 36V 1A High-PSRR RF LDO Regulator QFN-20 | Qty: 3500 | Unit: $2.12 | Total: $7,420.00
-  Pos 00040: DP83867ERGZ-S2 - Robust Robust High Immunity Gigabit Ethernet PHY 48-VQFN | Qty: 1200 | Unit: $5.08 | Total: $6,100.00
+  Pos 00040: DP83867ERGZ-S2 - Robust High Immunity Gigabit Ethernet PHY 48-VQFN | Qty: 1200 | Unit: $5.08 | Total: $6,100.00
 
 SPECIAL INSTRUCTIONS / NOTES:
 Standard automated warehouse fulfillment. Please attach Certificate of Conformance (CoC) and RoHS-3 compliant declaration with pallet bill of lading. Consignee receipt sign-off required upon delivery.

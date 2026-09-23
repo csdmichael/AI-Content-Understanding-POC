@@ -123,6 +123,7 @@ export interface Scenario {
   risk_level: string;
   total: number;
   item_count: number;
+  page_count?: number;
   supplier: SupplierInfo;
   buyer: BuyerInfo;
   po_details: PODetails;

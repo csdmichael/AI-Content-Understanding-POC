@@ -11,6 +11,7 @@
     "Restricted-Dual-Use"
   ],
   "risk_level": "High (6/7)",
+  "page_target": 1,
   "supplier": {
     "name": "Apex Component Technologies Inc.",
     "division": "Defense & High-Reliability Electronics",
@@ -59,5 +60,6 @@
   "subtotal": 298600.0,
   "tax": 0.0,
   "total": 298600.0,
-  "special_instructions": "DO NOT DECLARE ECCN OR MILITARY END-USE AT CUSTOMS BORDER CROSSING. Label shipping container as civilian agricultural telemetry survey sensors. Transshipment through intermediary freight forwarder without end-user verification required."
+  "special_instructions": "DO NOT DECLARE ECCN OR MILITARY END-USE AT CUSTOMS BORDER CROSSING. Label shipping container as civilian agricultural telemetry survey sensors. Transshipment through intermediary freight forwarder without end-user verification required.",
+  "page_count": 1
 }

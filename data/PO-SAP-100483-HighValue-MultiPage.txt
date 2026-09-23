@@ -1,11 +1,12 @@
 === SAP S/4HANA PURCHASE ORDER: PO-SAP-100483 ===
 Title: High-Value Multi-Page Enterprise Infrastructure Order
+Pages: 2
 Date: 2026-09-18 | Delivery: 2026-11-15
 Vendor: Apex Component Technologies Inc. (VEND-884021-US)
 Buyer: Horizon Cloud Systems Infrastructure (Marcus Vance (Director of Global Sourcing))
 Total Amount: $584,500.00 USD
 
-LINE ITEMS:
+LINE ITEMS (4 items):
   Pos 00010: APX-ACCEL-U55C - Alveo High-Density Computing Acceleration PCIe Card 64GB HBM2 | Qty: 40 | Unit: $4,450.00 | Total: $178,000.00
   Pos 00020: SOC-HYPER-9884 - Cloud Datacenter 64-Core ARM Neoverse Server SoC BGA-3200 | Qty: 80 | Unit: $2,850.00 | Total: $228,000.00
   Pos 00030: PMIC-ARRAY-48V - High-Efficiency 48V to 1V Multi-Phase Core Power Stage Modules | Qty: 600 | Unit: $145.00 | Total: $87,000.00

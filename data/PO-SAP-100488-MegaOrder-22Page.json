@@ -1,0 +1,1127 @@
+{
+  "id": "scenario-7",
+  "po_number": "PO-SAP-100488",
+  "title": "Ultra-Large Enterprise PO (22 Full Pages, 120+ Lines, Multi-Warehouse)",
+  "filename_base": "PO-SAP-100488-MegaOrder-22Page",
+  "category": "Large Context / 22-Page Showcase",
+  "safety_expected": "PASS",
+  "guardrail_flags": [
+    "Large-Context-Windowing",
+    "Sliding-Window-50Token-Overlap",
+    "Parallel-Chunk-Scanning",
+    "High-Throughput-Extraction"
+  ],
+  "risk_level": "Low (Chunking Applied across 22 Pages)",
+  "page_target": 22,
+  "supplier": {
+    "name": "Apex Component Technologies Inc.",
+    "division": "Global Enterprise Semiconductor & Interconnect Solutions",
+    "address": "9200 Innovation Parkway, Suite 400",
+    "city_state_zip": "Centennial, CO 80112 USA",
+    "sap_vendor_id": "VEND-884021-US",
+    "contact": "global-enterprise@apex-components.corp"
+  },
+  "buyer": {
+    "company": "Titan Cloud & Autonomous Mobility Systems Inc.",
+    "division": "Global Hardware Platform Sourcing & SMT Manufacturing",
+    "address": "7700 Technology Drive, Cyber Valley Campus",
+    "city_state_zip": "Austin, TX 78746 USA",
+    "sap_customer_id": "CUST-998822-GLOBAL",
+    "buyer_name": "Eleanor Vance & Carlos Mendez (Strategic Sourcing Directors)"
+  },
+  "po_details": {
+    "po_date": "2026-09-23",
+    "delivery_date": "2026-12-15",
+    "incoterms": "DDP - Multi-Site Consolidated Delivery (5 Regional Hubs)",
+    "payment_terms": "Net 60 Days via Automated EDI 820 Remittance Advice",
+    "currency": "USD",
+    "sap_doc_type": "NB - Enterprise Master Blanket Purchase Agreement",
+    "salesforce_opp_id": "SF-OPP-9488990-GLOBAL"
+  },
+  "items": [
+    {
+      "pos": "00010",
+      "part_no": "TITAN-10023",
+      "desc": "Semiconductor Device Subsystem #001 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 1120,
+      "unit": "EA",
+      "price": 5.75,
+      "total": 6440.0
+    },
+    {
+      "pos": "00020",
+      "part_no": "TITAN-10046",
+      "desc": "Semiconductor Device Subsystem #002 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 1240,
+      "unit": "EA",
+      "price": 6.7,
+      "total": 8308.0
+    },
+    {
+      "pos": "00030",
+      "part_no": "TITAN-10069",
+      "desc": "Semiconductor Device Subsystem #003 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 1360,
+      "unit": "EA",
+      "price": 7.65,
+      "total": 10404.0
+    },
+    {
+      "pos": "00040",
+      "part_no": "TITAN-10092",
+      "desc": "Semiconductor Device Subsystem #004 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 1480,
+      "unit": "EA",
+      "price": 8.6,
+      "total": 12728.0
+    },
+    {
+      "pos": "00050",
+      "part_no": "TITAN-10115",
+      "desc": "Semiconductor Device Subsystem #005 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 1600,
+      "unit": "EA",
+      "price": 9.55,
+      "total": 15280.0
+    },
+    {
+      "pos": "00060",
+      "part_no": "TITAN-10138",
+      "desc": "Semiconductor Device Subsystem #006 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 1720,
+      "unit": "EA",
+      "price": 10.5,
+      "total": 18060.0
+    },
+    {
+      "pos": "00070",
+      "part_no": "TITAN-10161",
+      "desc": "Semiconductor Device Subsystem #007 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 1840,
+      "unit": "EA",
+      "price": 11.45,
+      "total": 21068.0
+    },
+    {
+      "pos": "00080",
+      "part_no": "TITAN-10184",
+      "desc": "Semiconductor Device Subsystem #008 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 1960,
+      "unit": "EA",
+      "price": 12.4,
+      "total": 24304.0
+    },
+    {
+      "pos": "00090",
+      "part_no": "TITAN-10207",
+      "desc": "Semiconductor Device Subsystem #009 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 2080,
+      "unit": "EA",
+      "price": 13.35,
+      "total": 27768.0
+    },
+    {
+      "pos": "00100",
+      "part_no": "TITAN-10230",
+      "desc": "Semiconductor Device Subsystem #010 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 2200,
+      "unit": "EA",
+      "price": 14.3,
+      "total": 31460.0
+    },
+    {
+      "pos": "00110",
+      "part_no": "TITAN-10253",
+      "desc": "Semiconductor Device Subsystem #011 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 2320,
+      "unit": "EA",
+      "price": 15.25,
+      "total": 35380.0
+    },
+    {
+      "pos": "00120",
+      "part_no": "TITAN-10276",
+      "desc": "Semiconductor Device Subsystem #012 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 2440,
+      "unit": "EA",
+      "price": 16.2,
+      "total": 39528.0
+    },
+    {
+      "pos": "00130",
+      "part_no": "TITAN-10299",
+      "desc": "Semiconductor Device Subsystem #013 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 2560,
+      "unit": "EA",
+      "price": 17.15,
+      "total": 43904.0
+    },
+    {
+      "pos": "00140",
+      "part_no": "TITAN-10322",
+      "desc": "Semiconductor Device Subsystem #014 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 2680,
+      "unit": "EA",
+      "price": 18.1,
+      "total": 48508.0
+    },
+    {
+      "pos": "00150",
+      "part_no": "TITAN-10345",
+      "desc": "Semiconductor Device Subsystem #015 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 2800,
+      "unit": "EA",
+      "price": 19.05,
+      "total": 53340.0
+    },
+    {
+      "pos": "00160",
+      "part_no": "TITAN-10368",
+      "desc": "Semiconductor Device Subsystem #016 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 2920,
+      "unit": "EA",
+      "price": 20.0,
+      "total": 58400.0
+    },
+    {
+      "pos": "00170",
+      "part_no": "TITAN-10391",
+      "desc": "Semiconductor Device Subsystem #017 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 3040,
+      "unit": "EA",
+      "price": 20.95,
+      "total": 63688.0
+    },
+    {
+      "pos": "00180",
+      "part_no": "TITAN-10414",
+      "desc": "Semiconductor Device Subsystem #018 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 3160,
+      "unit": "EA",
+      "price": 21.9,
+      "total": 69204.0
+    },
+    {
+      "pos": "00190",
+      "part_no": "TITAN-10437",
+      "desc": "Semiconductor Device Subsystem #019 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 3280,
+      "unit": "EA",
+      "price": 22.85,
+      "total": 74948.0
+    },
+    {
+      "pos": "00200",
+      "part_no": "TITAN-10460",
+      "desc": "Semiconductor Device Subsystem #020 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 3400,
+      "unit": "EA",
+      "price": 23.8,
+      "total": 80920.0
+    },
+    {
+      "pos": "00210",
+      "part_no": "TITAN-10483",
+      "desc": "Semiconductor Device Subsystem #021 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 3520,
+      "unit": "EA",
+      "price": 24.75,
+      "total": 87120.0
+    },
+    {
+      "pos": "00220",
+      "part_no": "TITAN-10506",
+      "desc": "Semiconductor Device Subsystem #022 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 3640,
+      "unit": "EA",
+      "price": 25.7,
+      "total": 93548.0
+    },
+    {
+      "pos": "00230",
+      "part_no": "TITAN-10529",
+      "desc": "Semiconductor Device Subsystem #023 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 3760,
+      "unit": "EA",
+      "price": 26.65,
+      "total": 100204.0
+    },
+    {
+      "pos": "00240",
+      "part_no": "TITAN-10552",
+      "desc": "Semiconductor Device Subsystem #024 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 3880,
+      "unit": "EA",
+      "price": 27.6,
+      "total": 107088.0
+    },
+    {
+      "pos": "00250",
+      "part_no": "TITAN-10575",
+      "desc": "Semiconductor Device Subsystem #025 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4000,
+      "unit": "EA",
+      "price": 28.55,
+      "total": 114200.0
+    },
+    {
+      "pos": "00260",
+      "part_no": "TITAN-10598",
+      "desc": "Semiconductor Device Subsystem #026 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4120,
+      "unit": "EA",
+      "price": 29.5,
+      "total": 121540.0
+    },
+    {
+      "pos": "00270",
+      "part_no": "TITAN-10621",
+      "desc": "Semiconductor Device Subsystem #027 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4240,
+      "unit": "EA",
+      "price": 30.45,
+      "total": 129108.0
+    },
+    {
+      "pos": "00280",
+      "part_no": "TITAN-10644",
+      "desc": "Semiconductor Device Subsystem #028 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4360,
+      "unit": "EA",
+      "price": 31.4,
+      "total": 136904.0
+    },
+    {
+      "pos": "00290",
+      "part_no": "TITAN-10667",
+      "desc": "Semiconductor Device Subsystem #029 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4480,
+      "unit": "EA",
+      "price": 32.35,
+      "total": 144928.0
+    },
+    {
+      "pos": "00300",
+      "part_no": "TITAN-10690",
+      "desc": "Semiconductor Device Subsystem #030 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4600,
+      "unit": "EA",
+      "price": 33.3,
+      "total": 153180.0
+    },
+    {
+      "pos": "00310",
+      "part_no": "TITAN-10713",
+      "desc": "Semiconductor Device Subsystem #031 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4720,
+      "unit": "EA",
+      "price": 34.25,
+      "total": 161660.0
+    },
+    {
+      "pos": "00320",
+      "part_no": "TITAN-10736",
+      "desc": "Semiconductor Device Subsystem #032 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4840,
+      "unit": "EA",
+      "price": 35.2,
+      "total": 170368.0
+    },
+    {
+      "pos": "00330",
+      "part_no": "TITAN-10759",
+      "desc": "Semiconductor Device Subsystem #033 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 4960,
+      "unit": "EA",
+      "price": 36.15,
+      "total": 179304.0
+    },
+    {
+      "pos": "00340",
+      "part_no": "TITAN-10782",
+      "desc": "Semiconductor Device Subsystem #034 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 5080,
+      "unit": "EA",
+      "price": 37.1,
+      "total": 188468.0
+    },
+    {
+      "pos": "00350",
+      "part_no": "TITAN-10805",
+      "desc": "Semiconductor Device Subsystem #035 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 5200,
+      "unit": "EA",
+      "price": 38.05,
+      "total": 197860.0
+    },
+    {
+      "pos": "00360",
+      "part_no": "TITAN-10828",
+      "desc": "Semiconductor Device Subsystem #036 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 5320,
+      "unit": "EA",
+      "price": 39.0,
+      "total": 207480.0
+    },
+    {
+      "pos": "00370",
+      "part_no": "TITAN-10851",
+      "desc": "Semiconductor Device Subsystem #037 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 5440,
+      "unit": "EA",
+      "price": 39.95,
+      "total": 217328.0
+    },
+    {
+      "pos": "00380",
+      "part_no": "TITAN-10874",
+      "desc": "Semiconductor Device Subsystem #038 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 5560,
+      "unit": "EA",
+      "price": 40.9,
+      "total": 227404.0
+    },
+    {
+      "pos": "00390",
+      "part_no": "TITAN-10897",
+      "desc": "Semiconductor Device Subsystem #039 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 5680,
+      "unit": "EA",
+      "price": 41.85,
+      "total": 237708.0
+    },
+    {
+      "pos": "00400",
+      "part_no": "TITAN-10920",
+      "desc": "Semiconductor Device Subsystem #040 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 5800,
+      "unit": "EA",
+      "price": 42.8,
+      "total": 248240.0
+    },
+    {
+      "pos": "00410",
+      "part_no": "TITAN-10943",
+      "desc": "Semiconductor Device Subsystem #041 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 5920,
+      "unit": "EA",
+      "price": 43.75,
+      "total": 259000.0
+    },
+    {
+      "pos": "00420",
+      "part_no": "TITAN-10966",
+      "desc": "Semiconductor Device Subsystem #042 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 6040,
+      "unit": "EA",
+      "price": 44.7,
+      "total": 269988.0
+    },
+    {
+      "pos": "00430",
+      "part_no": "TITAN-10989",
+      "desc": "Semiconductor Device Subsystem #043 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 6160,
+      "unit": "EA",
+      "price": 45.65,
+      "total": 281204.0
+    },
+    {
+      "pos": "00440",
+      "part_no": "TITAN-11012",
+      "desc": "Semiconductor Device Subsystem #044 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 6280,
+      "unit": "EA",
+      "price": 46.6,
+      "total": 292648.0
+    },
+    {
+      "pos": "00450",
+      "part_no": "TITAN-11035",
+      "desc": "Semiconductor Device Subsystem #045 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 6400,
+      "unit": "EA",
+      "price": 47.55,
+      "total": 304320.0
+    },
+    {
+      "pos": "00460",
+      "part_no": "TITAN-11058",
+      "desc": "Semiconductor Device Subsystem #046 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 6520,
+      "unit": "EA",
+      "price": 48.5,
+      "total": 316220.0
+    },
+    {
+      "pos": "00470",
+      "part_no": "TITAN-11081",
+      "desc": "Semiconductor Device Subsystem #047 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 6640,
+      "unit": "EA",
+      "price": 49.45,
+      "total": 328348.0
+    },
+    {
+      "pos": "00480",
+      "part_no": "TITAN-11104",
+      "desc": "Semiconductor Device Subsystem #048 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 6760,
+      "unit": "EA",
+      "price": 50.4,
+      "total": 340704.0
+    },
+    {
+      "pos": "00490",
+      "part_no": "TITAN-11127",
+      "desc": "Semiconductor Device Subsystem #049 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 6880,
+      "unit": "EA",
+      "price": 51.35,
+      "total": 353288.0
+    },
+    {
+      "pos": "00500",
+      "part_no": "TITAN-11150",
+      "desc": "Semiconductor Device Subsystem #050 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7000,
+      "unit": "EA",
+      "price": 52.3,
+      "total": 366100.0
+    },
+    {
+      "pos": "00510",
+      "part_no": "TITAN-11173",
+      "desc": "Semiconductor Device Subsystem #051 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7120,
+      "unit": "EA",
+      "price": 53.25,
+      "total": 379140.0
+    },
+    {
+      "pos": "00520",
+      "part_no": "TITAN-11196",
+      "desc": "Semiconductor Device Subsystem #052 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7240,
+      "unit": "EA",
+      "price": 54.2,
+      "total": 392408.0
+    },
+    {
+      "pos": "00530",
+      "part_no": "TITAN-11219",
+      "desc": "Semiconductor Device Subsystem #053 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7360,
+      "unit": "EA",
+      "price": 55.15,
+      "total": 405904.0
+    },
+    {
+      "pos": "00540",
+      "part_no": "TITAN-11242",
+      "desc": "Semiconductor Device Subsystem #054 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7480,
+      "unit": "EA",
+      "price": 56.1,
+      "total": 419628.0
+    },
+    {
+      "pos": "00550",
+      "part_no": "TITAN-11265",
+      "desc": "Semiconductor Device Subsystem #055 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7600,
+      "unit": "EA",
+      "price": 57.05,
+      "total": 433580.0
+    },
+    {
+      "pos": "00560",
+      "part_no": "TITAN-11288",
+      "desc": "Semiconductor Device Subsystem #056 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7720,
+      "unit": "EA",
+      "price": 58.0,
+      "total": 447760.0
+    },
+    {
+      "pos": "00570",
+      "part_no": "TITAN-11311",
+      "desc": "Semiconductor Device Subsystem #057 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7840,
+      "unit": "EA",
+      "price": 58.95,
+      "total": 462168.0
+    },
+    {
+      "pos": "00580",
+      "part_no": "TITAN-11334",
+      "desc": "Semiconductor Device Subsystem #058 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 7960,
+      "unit": "EA",
+      "price": 59.9,
+      "total": 476804.0
+    },
+    {
+      "pos": "00590",
+      "part_no": "TITAN-11357",
+      "desc": "Semiconductor Device Subsystem #059 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 8080,
+      "unit": "EA",
+      "price": 60.85,
+      "total": 491668.0
+    },
+    {
+      "pos": "00600",
+      "part_no": "TITAN-11380",
+      "desc": "Semiconductor Device Subsystem #060 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 8200,
+      "unit": "EA",
+      "price": 61.8,
+      "total": 506760.0
+    },
+    {
+      "pos": "00610",
+      "part_no": "TITAN-11403",
+      "desc": "Semiconductor Device Subsystem #061 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 8320,
+      "unit": "EA",
+      "price": 62.75,
+      "total": 522080.0
+    },
+    {
+      "pos": "00620",
+      "part_no": "TITAN-11426",
+      "desc": "Semiconductor Device Subsystem #062 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 8440,
+      "unit": "EA",
+      "price": 63.7,
+      "total": 537628.0
+    },
+    {
+      "pos": "00630",
+      "part_no": "TITAN-11449",
+      "desc": "Semiconductor Device Subsystem #063 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 8560,
+      "unit": "EA",
+      "price": 64.65,
+      "total": 553404.0
+    },
+    {
+      "pos": "00640",
+      "part_no": "TITAN-11472",
+      "desc": "Semiconductor Device Subsystem #064 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 8680,
+      "unit": "EA",
+      "price": 65.6,
+      "total": 569408.0
+    },
+    {
+      "pos": "00650",
+      "part_no": "TITAN-11495",
+      "desc": "Semiconductor Device Subsystem #065 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 8800,
+      "unit": "EA",
+      "price": 66.55,
+      "total": 585640.0
+    },
+    {
+      "pos": "00660",
+      "part_no": "TITAN-11518",
+      "desc": "Semiconductor Device Subsystem #066 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 8920,
+      "unit": "EA",
+      "price": 67.5,
+      "total": 602100.0
+    },
+    {
+      "pos": "00670",
+      "part_no": "TITAN-11541",
+      "desc": "Semiconductor Device Subsystem #067 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 9040,
+      "unit": "EA",
+      "price": 68.45,
+      "total": 618788.0
+    },
+    {
+      "pos": "00680",
+      "part_no": "TITAN-11564",
+      "desc": "Semiconductor Device Subsystem #068 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 9160,
+      "unit": "EA",
+      "price": 69.4,
+      "total": 635704.0
+    },
+    {
+      "pos": "00690",
+      "part_no": "TITAN-11587",
+      "desc": "Semiconductor Device Subsystem #069 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 9280,
+      "unit": "EA",
+      "price": 70.35,
+      "total": 652848.0
+    },
+    {
+      "pos": "00700",
+      "part_no": "TITAN-11610",
+      "desc": "Semiconductor Device Subsystem #070 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 9400,
+      "unit": "EA",
+      "price": 71.3,
+      "total": 670220.0
+    },
+    {
+      "pos": "00710",
+      "part_no": "TITAN-11633",
+      "desc": "Semiconductor Device Subsystem #071 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 9520,
+      "unit": "EA",
+      "price": 72.25,
+      "total": 687820.0
+    },
+    {
+      "pos": "00720",
+      "part_no": "TITAN-11656",
+      "desc": "Semiconductor Device Subsystem #072 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 9640,
+      "unit": "EA",
+      "price": 73.2,
+      "total": 705648.0
+    },
+    {
+      "pos": "00730",
+      "part_no": "TITAN-11679",
+      "desc": "Semiconductor Device Subsystem #073 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 9760,
+      "unit": "EA",
+      "price": 74.15,
+      "total": 723704.0
+    },
+    {
+      "pos": "00740",
+      "part_no": "TITAN-11702",
+      "desc": "Semiconductor Device Subsystem #074 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 9880,
+      "unit": "EA",
+      "price": 75.1,
+      "total": 741988.0
+    },
+    {
+      "pos": "00750",
+      "part_no": "TITAN-11725",
+      "desc": "Semiconductor Device Subsystem #075 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10000,
+      "unit": "EA",
+      "price": 76.05,
+      "total": 760500.0
+    },
+    {
+      "pos": "00760",
+      "part_no": "TITAN-11748",
+      "desc": "Semiconductor Device Subsystem #076 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10120,
+      "unit": "EA",
+      "price": 77.0,
+      "total": 779240.0
+    },
+    {
+      "pos": "00770",
+      "part_no": "TITAN-11771",
+      "desc": "Semiconductor Device Subsystem #077 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10240,
+      "unit": "EA",
+      "price": 77.95,
+      "total": 798208.0
+    },
+    {
+      "pos": "00780",
+      "part_no": "TITAN-11794",
+      "desc": "Semiconductor Device Subsystem #078 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10360,
+      "unit": "EA",
+      "price": 78.9,
+      "total": 817404.0
+    },
+    {
+      "pos": "00790",
+      "part_no": "TITAN-11817",
+      "desc": "Semiconductor Device Subsystem #079 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10480,
+      "unit": "EA",
+      "price": 79.85,
+      "total": 836828.0
+    },
+    {
+      "pos": "00800",
+      "part_no": "TITAN-11840",
+      "desc": "Semiconductor Device Subsystem #080 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10600,
+      "unit": "EA",
+      "price": 80.8,
+      "total": 856480.0
+    },
+    {
+      "pos": "00810",
+      "part_no": "TITAN-11863",
+      "desc": "Semiconductor Device Subsystem #081 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10720,
+      "unit": "EA",
+      "price": 81.75,
+      "total": 876360.0
+    },
+    {
+      "pos": "00820",
+      "part_no": "TITAN-11886",
+      "desc": "Semiconductor Device Subsystem #082 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10840,
+      "unit": "EA",
+      "price": 82.7,
+      "total": 896468.0
+    },
+    {
+      "pos": "00830",
+      "part_no": "TITAN-11909",
+      "desc": "Semiconductor Device Subsystem #083 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 10960,
+      "unit": "EA",
+      "price": 83.65,
+      "total": 916804.0
+    },
+    {
+      "pos": "00840",
+      "part_no": "TITAN-11932",
+      "desc": "Semiconductor Device Subsystem #084 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 11080,
+      "unit": "EA",
+      "price": 84.6,
+      "total": 937368.0
+    },
+    {
+      "pos": "00850",
+      "part_no": "TITAN-11955",
+      "desc": "Semiconductor Device Subsystem #085 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 11200,
+      "unit": "EA",
+      "price": 85.55,
+      "total": 958160.0
+    },
+    {
+      "pos": "00860",
+      "part_no": "TITAN-11978",
+      "desc": "Semiconductor Device Subsystem #086 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 11320,
+      "unit": "EA",
+      "price": 86.5,
+      "total": 979180.0
+    },
+    {
+      "pos": "00870",
+      "part_no": "TITAN-12001",
+      "desc": "Semiconductor Device Subsystem #087 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 11440,
+      "unit": "EA",
+      "price": 87.45,
+      "total": 1000428.0
+    },
+    {
+      "pos": "00880",
+      "part_no": "TITAN-12024",
+      "desc": "Semiconductor Device Subsystem #088 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 11560,
+      "unit": "EA",
+      "price": 88.4,
+      "total": 1021904.0
+    },
+    {
+      "pos": "00890",
+      "part_no": "TITAN-12047",
+      "desc": "Semiconductor Device Subsystem #089 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 11680,
+      "unit": "EA",
+      "price": 89.35,
+      "total": 1043608.0
+    },
+    {
+      "pos": "00900",
+      "part_no": "TITAN-12070",
+      "desc": "Semiconductor Device Subsystem #090 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 11800,
+      "unit": "EA",
+      "price": 90.3,
+      "total": 1065540.0
+    },
+    {
+      "pos": "00910",
+      "part_no": "TITAN-12093",
+      "desc": "Semiconductor Device Subsystem #091 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 11920,
+      "unit": "EA",
+      "price": 91.25,
+      "total": 1087700.0
+    },
+    {
+      "pos": "00920",
+      "part_no": "TITAN-12116",
+      "desc": "Semiconductor Device Subsystem #092 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 12040,
+      "unit": "EA",
+      "price": 92.2,
+      "total": 1110088.0
+    },
+    {
+      "pos": "00930",
+      "part_no": "TITAN-12139",
+      "desc": "Semiconductor Device Subsystem #093 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 12160,
+      "unit": "EA",
+      "price": 93.15,
+      "total": 1132704.0
+    },
+    {
+      "pos": "00940",
+      "part_no": "TITAN-12162",
+      "desc": "Semiconductor Device Subsystem #094 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 12280,
+      "unit": "EA",
+      "price": 94.1,
+      "total": 1155548.0
+    },
+    {
+      "pos": "00950",
+      "part_no": "TITAN-12185",
+      "desc": "Semiconductor Device Subsystem #095 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 12400,
+      "unit": "EA",
+      "price": 95.05,
+      "total": 1178620.0
+    },
+    {
+      "pos": "00960",
+      "part_no": "TITAN-12208",
+      "desc": "Semiconductor Device Subsystem #096 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 12520,
+      "unit": "EA",
+      "price": 96.0,
+      "total": 1201920.0
+    },
+    {
+      "pos": "00970",
+      "part_no": "TITAN-12231",
+      "desc": "Semiconductor Device Subsystem #097 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 12640,
+      "unit": "EA",
+      "price": 96.95,
+      "total": 1225448.0
+    },
+    {
+      "pos": "00980",
+      "part_no": "TITAN-12254",
+      "desc": "Semiconductor Device Subsystem #098 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 12760,
+      "unit": "EA",
+      "price": 97.9,
+      "total": 1249204.0
+    },
+    {
+      "pos": "00990",
+      "part_no": "TITAN-12277",
+      "desc": "Semiconductor Device Subsystem #099 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 12880,
+      "unit": "EA",
+      "price": 98.85,
+      "total": 1273188.0
+    },
+    {
+      "pos": "01000",
+      "part_no": "TITAN-12300",
+      "desc": "Semiconductor Device Subsystem #100 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13000,
+      "unit": "EA",
+      "price": 99.8,
+      "total": 1297400.0
+    },
+    {
+      "pos": "01010",
+      "part_no": "TITAN-12323",
+      "desc": "Semiconductor Device Subsystem #101 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13120,
+      "unit": "EA",
+      "price": 100.75,
+      "total": 1321840.0
+    },
+    {
+      "pos": "01020",
+      "part_no": "TITAN-12346",
+      "desc": "Semiconductor Device Subsystem #102 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13240,
+      "unit": "EA",
+      "price": 101.7,
+      "total": 1346508.0
+    },
+    {
+      "pos": "01030",
+      "part_no": "TITAN-12369",
+      "desc": "Semiconductor Device Subsystem #103 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13360,
+      "unit": "EA",
+      "price": 102.65,
+      "total": 1371404.0
+    },
+    {
+      "pos": "01040",
+      "part_no": "TITAN-12392",
+      "desc": "Semiconductor Device Subsystem #104 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13480,
+      "unit": "EA",
+      "price": 103.6,
+      "total": 1396528.0
+    },
+    {
+      "pos": "01050",
+      "part_no": "TITAN-12415",
+      "desc": "Semiconductor Device Subsystem #105 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13600,
+      "unit": "EA",
+      "price": 104.55,
+      "total": 1421880.0
+    },
+    {
+      "pos": "01060",
+      "part_no": "TITAN-12438",
+      "desc": "Semiconductor Device Subsystem #106 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13720,
+      "unit": "EA",
+      "price": 105.5,
+      "total": 1447460.0
+    },
+    {
+      "pos": "01070",
+      "part_no": "TITAN-12461",
+      "desc": "Semiconductor Device Subsystem #107 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13840,
+      "unit": "EA",
+      "price": 106.45,
+      "total": 1473268.0
+    },
+    {
+      "pos": "01080",
+      "part_no": "TITAN-12484",
+      "desc": "Semiconductor Device Subsystem #108 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 13960,
+      "unit": "EA",
+      "price": 107.4,
+      "total": 1499304.0
+    },
+    {
+      "pos": "01090",
+      "part_no": "TITAN-12507",
+      "desc": "Semiconductor Device Subsystem #109 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 14080,
+      "unit": "EA",
+      "price": 108.35,
+      "total": 1525568.0
+    },
+    {
+      "pos": "01100",
+      "part_no": "TITAN-12530",
+      "desc": "Semiconductor Device Subsystem #110 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 14200,
+      "unit": "EA",
+      "price": 109.3,
+      "total": 1552060.0
+    },
+    {
+      "pos": "01110",
+      "part_no": "TITAN-12553",
+      "desc": "Semiconductor Device Subsystem #111 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 14320,
+      "unit": "EA",
+      "price": 110.25,
+      "total": 1578780.0
+    },
+    {
+      "pos": "01120",
+      "part_no": "TITAN-12576",
+      "desc": "Semiconductor Device Subsystem #112 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 14440,
+      "unit": "EA",
+      "price": 111.2,
+      "total": 1605728.0
+    },
+    {
+      "pos": "01130",
+      "part_no": "TITAN-12599",
+      "desc": "Semiconductor Device Subsystem #113 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 14560,
+      "unit": "EA",
+      "price": 112.15,
+      "total": 1632904.0
+    },
+    {
+      "pos": "01140",
+      "part_no": "TITAN-12622",
+      "desc": "Semiconductor Device Subsystem #114 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 14680,
+      "unit": "EA",
+      "price": 113.1,
+      "total": 1660308.0
+    },
+    {
+      "pos": "01150",
+      "part_no": "TITAN-12645",
+      "desc": "Semiconductor Device Subsystem #115 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 14800,
+      "unit": "EA",
+      "price": 114.05,
+      "total": 1687940.0
+    },
+    {
+      "pos": "01160",
+      "part_no": "TITAN-12668",
+      "desc": "Semiconductor Device Subsystem #116 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 14920,
+      "unit": "EA",
+      "price": 115.0,
+      "total": 1715800.0
+    },
+    {
+      "pos": "01170",
+      "part_no": "TITAN-12691",
+      "desc": "Semiconductor Device Subsystem #117 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 15040,
+      "unit": "EA",
+      "price": 115.95,
+      "total": 1743888.0
+    },
+    {
+      "pos": "01180",
+      "part_no": "TITAN-12714",
+      "desc": "Semiconductor Device Subsystem #118 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 15160,
+      "unit": "EA",
+      "price": 116.9,
+      "total": 1772204.0
+    },
+    {
+      "pos": "01190",
+      "part_no": "TITAN-12737",
+      "desc": "Semiconductor Device Subsystem #119 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 15280,
+      "unit": "EA",
+      "price": 117.85,
+      "total": 1800748.0
+    },
+    {
+      "pos": "01200",
+      "part_no": "TITAN-12760",
+      "desc": "Semiconductor Device Subsystem #120 - Military/Automotive Extended Temp Grade Class-B",
+      "qty": 15400,
+      "unit": "EA",
+      "price": 118.8,
+      "total": 1829520.0
+    }
+  ],
+  "special_instructions": "ULTRA-LARGE SCALE 22-PAGE ENTERPRISE PROCUREMENT CONTRACT: Covers 120+ specialized bill-of-materials items, multi-facility warehouse distribution across Phoenix, Austin, Cambridge, San Jose, and Munich hubs. Full compliance with ISO 9001:2015, AS9120B aerospace quality standards, and Azure AI Content Safety sliding-window guardrail protection (250-token window with 50-token overlap). Automated 3-way matching in SAP S/4HANA upon in-flight safety clearance.",
+  "subtotal": 78141840.0,
+  "total": 78141840.0,
+  "page_count": 22
+}
