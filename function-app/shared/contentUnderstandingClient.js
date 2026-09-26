@@ -4,12 +4,17 @@
  */
 
 const axios = require('axios');
+const createAzureCredential = require('./azureCredential');
 
 class ContentUnderstandingClient {
-  constructor(endpoint, apiKey) {
+  constructor(endpoint, credential) {
     this.endpoint = endpoint || process.env.AZURE_AI_SERVICES_ENDPOINT;
-    this.apiKey = apiKey || process.env.AZURE_AI_SERVICES_KEY;
+    this.credential = credential || createAzureCredential();
     this.apiVersion = '2024-12-01-preview';
+
+    if (!this.endpoint) {
+      throw new Error('AZURE_AI_SERVICES_ENDPOINT is required.');
+    }
   }
 
   /**
@@ -19,30 +24,20 @@ class ContentUnderstandingClient {
    */
   async analyzeDocument(fileInput, analyzerId = 'purchase-order-layout-v1') {
     const url = `${this.endpoint.replace(/\/$/, '')}/contentunderstanding/analyzers/${analyzerId}:analyze?api-version=${this.apiVersion}`;
+    const token = await this.credential.getToken('https://cognitiveservices.azure.com/.default');
 
     const headers = {
-      'Ocp-Apim-Subscription-Key': this.apiKey,
+      Authorization: `Bearer ${token.token}`,
       'Content-Type': Buffer.isBuffer(fileInput) ? 'application/octet-stream' : 'application/json'
     };
 
     const payload = Buffer.isBuffer(fileInput) ? fileInput : { url: fileInput };
 
     try {
-      // In live production, this posts the binary file and polls the operation-location header
       const response = await axios.post(url, payload, { headers, timeout: 30000 });
       return response.data;
     } catch (error) {
-      // Return structured fallback schema representation if endpoint is offline or credentials not configured
-      return {
-        analyzerId,
-        status: 'Succeeded',
-        fields: {
-          PONumber: { value: 'PO-SAP-100482', confidence: 0.99 },
-          SupplierName: { value: 'Apex Component Technologies Inc.', confidence: 0.98 },
-          BuyerCompany: { value: 'Quantum Dynamics Systems LLC', confidence: 0.98 },
-          TotalAmount: { value: 48320.00, confidence: 0.99 }
-        }
-      };
+      throw new Error(`Content Understanding analysis failed: ${error.message}`, { cause: error });
     }
   }
 }

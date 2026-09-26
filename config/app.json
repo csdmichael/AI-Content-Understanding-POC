@@ -1,0 +1,5 @@
+{
+  "largeContextReferenceUrl": "https://github.com/csdmichael/AI-Content-Safety-POC/tree/main/large-context",
+  "defaultPort": 8080,
+  "requestBodyLimit": "10mb"
+}

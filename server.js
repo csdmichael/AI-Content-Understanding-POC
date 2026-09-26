@@ -10,19 +10,20 @@ const fs = require('fs');
 const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 
-// Load environment variables from .env if present
 dotenv.config();
 
+const appConfigPath = path.join(__dirname, 'config', 'app.json');
+const appConfig = JSON.parse(fs.readFileSync(appConfigPath, 'utf8'));
 const app = express();
-const PORT = process.env.PORT || 8080;
-const ENVIRONMENT = process.env.NODE_ENV || 'production';
-const APP_SERVICE_PLAN = process.env.APP_SERVICE_PLAN || 'caldova-showcase-plan (West US 2)';
-const AZURE_AI_ENDPOINT = process.env.AZURE_AI_SERVICES_ENDPOINT || 'https://foundry-myaacoub.cognitiveservices.azure.com/';
-const CONTENT_SAFETY_ENDPOINT = process.env.AZURE_CONTENT_SAFETY_ENDPOINT || 'https://foundry-myaacoub.cognitiveservices.azure.com/contentsafety';
+const PORT = process.env.PORT || appConfig.defaultPort;
+const ENVIRONMENT = process.env.NODE_ENV || 'development';
+const APP_SERVICE_PLAN = process.env.APP_SERVICE_PLAN || null;
+const AZURE_AI_ENDPOINT = process.env.AZURE_AI_SERVICES_ENDPOINT || null;
+const CONTENT_SAFETY_ENDPOINT = process.env.AZURE_CONTENT_SAFETY_ENDPOINT || null;
 
 app.use(cors());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(express.json({ limit: appConfig.requestBodyLimit }));
+app.use(express.urlencoded({ extended: true, limit: appConfig.requestBodyLimit }));
 
 // OpenAPI / Swagger Documentation
 const openApiSpecPath = path.join(__dirname, 'docs', 'openapi.json');
@@ -85,8 +86,8 @@ app.get('/api/v1/health', (req, res) => {
     nodeVersion: process.version,
     appServicePlan: APP_SERVICE_PLAN,
     services: {
-      contentUnderstanding: 'CONNECTED',
-      contentSafety: 'ACTIVE',
+      contentUnderstanding: AZURE_AI_ENDPOINT ? 'CONFIGURED' : 'NOT_CONFIGURED',
+      contentSafety: CONTENT_SAFETY_ENDPOINT ? 'CONFIGURED' : 'NOT_CONFIGURED',
       salesforceIngestTrigger: 'READY'
     }
   });
@@ -101,7 +102,7 @@ app.get('/api/v1/config', (req, res) => {
     contentSafetyEndpoint: CONTENT_SAFETY_ENDPOINT,
     appServicePlan: APP_SERVICE_PLAN,
     environment: ENVIRONMENT,
-    largeContextRefUrl: 'https://github.com/csdmichael/AI-Content-Safety-POC/tree/main/large-context'
+    largeContextRefUrl: appConfig.largeContextReferenceUrl
   });
 });
 

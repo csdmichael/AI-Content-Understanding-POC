@@ -1,0 +1,161 @@
+name: Deploy production
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+env:
+  TF_IN_AUTOMATION: true
+  TF_INPUT: false
+  TF_VAR_FILE: ../config/production.tfvars.json
+  WEB_PACKAGE: ${{ github.workspace }}/artifacts/web-app.zip
+  FUNCTION_PACKAGE: ${{ github.workspace }}/artifacts/function-app.zip
+
+jobs:
+  deploy:
+    name: Provision and deploy
+    runs-on: windows-latest
+    environment: production
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            frontend/package-lock.json
+            function-app/package-lock.json
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Sign in to Azure with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Install and test application dependencies
+        shell: pwsh
+        run: |
+          npm ci
+          npm test
+          npm ci --prefix frontend
+          npm test --prefix frontend -- --watch=false
+          npm ci --prefix function-app
+
+      - name: Build Web App
+        run: npm run build
+
+      - name: Create deployment packages
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "${{ github.workspace }}\artifacts" | Out-Null
+          Compress-Archive -Path @(
+            "config",
+            "data",
+            "docs",
+            "node_modules",
+            "public",
+            "package.json",
+            "package-lock.json",
+            "server.js",
+            "web.config"
+          ) -DestinationPath $env:WEB_PACKAGE -CompressionLevel Optimal
+
+          Push-Location function-app
+          Compress-Archive -Path @(
+            ".funcignore",
+            "Health",
+            "SalesforcePurchaseOrderIngest",
+            "shared",
+            "node_modules",
+            "host.json",
+            "package.json",
+            "package-lock.json"
+          ) -DestinationPath $env:FUNCTION_PACKAGE -CompressionLevel Optimal
+          Pop-Location
+
+      - name: Create backend configuration
+        shell: pwsh
+        working-directory: terraform
+        env:
+          BACKEND_RESOURCE_GROUP: ${{ vars.TF_BACKEND_RESOURCE_GROUP }}
+          BACKEND_STORAGE_ACCOUNT: ${{ vars.TF_BACKEND_STORAGE_ACCOUNT }}
+          BACKEND_CONTAINER: ${{ vars.TF_BACKEND_CONTAINER }}
+          BACKEND_KEY: ${{ vars.TF_BACKEND_KEY }}
+        run: |
+          @"
+          resource_group_name  = "$env:BACKEND_RESOURCE_GROUP"
+          storage_account_name = "$env:BACKEND_STORAGE_ACCOUNT"
+          container_name       = "$env:BACKEND_CONTAINER"
+          key                  = "$env:BACKEND_KEY"
+          use_azuread_auth     = true
+          "@ | Set-Content -Path backend.hcl
+
+      - name: Initialize Terraform
+        working-directory: terraform
+        run: terraform init -backend-config=backend.hcl
+
+      - name: Validate Terraform
+        working-directory: terraform
+        run: terraform validate
+
+      - name: Plan Terraform
+        working-directory: terraform
+        run: terraform plan -var-file="$env:TF_VAR_FILE" -out=production.tfplan
+
+      - name: Apply Terraform
+        working-directory: terraform
+        run: terraform apply -auto-approve production.tfplan
+
+      - name: Read deployment outputs
+        id: terraform
+        shell: pwsh
+        working-directory: terraform
+        run: |
+          "web_app_name=$(terraform output -raw app_service_name)" >> $env:GITHUB_OUTPUT
+          "function_app_name=$(terraform output -raw function_app_name)" >> $env:GITHUB_OUTPUT
+          "web_health_url=$(terraform output -raw health_endpoint_url)" >> $env:GITHUB_OUTPUT
+          "function_health_url=$(terraform output -raw function_health_endpoint_url)" >> $env:GITHUB_OUTPUT
+
+      - name: Deploy Web App package
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ steps.terraform.outputs.web_app_name }}
+          package: ${{ env.WEB_PACKAGE }}
+
+      - name: Deploy Function App package
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ steps.terraform.outputs.function_app_name }}
+          package: ${{ env.FUNCTION_PACKAGE }}
+
+      - name: Verify deployed endpoints
+        shell: pwsh
+        env:
+          WEB_HEALTH_URL: ${{ steps.terraform.outputs.web_health_url }}
+          FUNCTION_HEALTH_URL: ${{ steps.terraform.outputs.function_health_url }}
+        run: |
+          $webResponse = Invoke-WebRequest -Uri $env:WEB_HEALTH_URL -UseBasicParsing
+          if ($webResponse.StatusCode -ne 200) {
+            throw "Web App health check failed with status $($webResponse.StatusCode)."
+          }
+
+          $functionResponse = Invoke-WebRequest -Uri $env:FUNCTION_HEALTH_URL -UseBasicParsing
+          if ($functionResponse.StatusCode -ne 200) {
+            throw "Function App health check failed with status $($functionResponse.StatusCode)."
+          }

@@ -8,6 +8,9 @@
 > **Live Production UI**: [https://ai-content-understanding-ui.azurewebsites.net](https://ai-content-understanding-ui.azurewebsites.net)  
 > **Live Swagger API Docs**: [https://ai-content-understanding-ui.azurewebsites.net/api-docs/](https://ai-content-understanding-ui.azurewebsites.net/api-docs/)  
 > **Live Health Check API**: [https://ai-content-understanding-ui.azurewebsites.net/api/v1/health](https://ai-content-understanding-ui.azurewebsites.net/api/v1/health)  
+> **Azure AI Services Endpoint**: [https://foundry-myaacoub.cognitiveservices.azure.com/](https://foundry-myaacoub.cognitiveservices.azure.com/)
+> **Content Understanding API Base**: [https://foundry-myaacoub.cognitiveservices.azure.com/contentunderstanding/](https://foundry-myaacoub.cognitiveservices.azure.com/contentunderstanding/)
+> **Content Safety API Base**: [https://foundry-myaacoub.cognitiveservices.azure.com/contentsafety/](https://foundry-myaacoub.cognitiveservices.azure.com/contentsafety/)
 
 ---
 
@@ -320,6 +323,12 @@ AI-Content-Understanding-POC/
 ├── package.json                   # Root Express server & hosting dependencies
 ├── server.js                      # Express backend API, Swagger UI, and SPA server
 ├── web.config                     # Windows App Service iisnode & URL rewrite configuration
+├── .github/workflows/
+│   ├── ci.yml                     # Application and Terraform validation
+│   └── deploy.yml                 # OIDC-authenticated production deployment
+├── config/
+│   ├── app.json                   # Runtime defaults that are safe to commit
+│   └── production.tfvars.json     # Production infrastructure configuration
 ├── docs/
 │   ├── Architecture.png           # High-resolution reference architecture diagram
 │   ├── Architecture.svg           # Scalable vector architecture diagram
@@ -354,56 +363,70 @@ AI-Content-Understanding-POC/
 │   ├── generate_po_files.py       # Python ReportLab SAP Purchase Order generator
 │   ├── create_deploy_zip.py       # Automated packaging script for Azure App Service
 │   └── copy-dist.js               # Frontend distribution synchronizer
-└── terraform/                     # Infrastructure as Code (Azure App Service & AI Services)
-    ├── main.tf                    # App Service, Plan & Cognitive Services
+├── function-app/                  # Salesforce ingestion Azure Function
+│   ├── Health/                    # Anonymous health endpoint
+│   ├── SalesforcePurchaseOrderIngest/
+│   └── shared/                    # AI clients, identity, and large-context logic
+└── terraform/                     # Infrastructure as Code
+    ├── bootstrap/                 # GitHub OIDC identity and remote-state bootstrap
+    ├── main.tf                    # App Service, Function, identity, monitoring, RBAC
     ├── variables.tf               # Configurable deployment parameters
     ├── outputs.tf                 # Generated hostnames and resource IDs
-    └── terraform.tfvars.example   # Sample environment values
+    ├── backend.hcl.example        # Remote state configuration template
+    └── main.tfvars.json.example   # Environment configuration template
 ```
 
 ---
 
 ## 9. Infrastructure as Code (Terraform)
 
-Infrastructure is defined in `terraform/` with zero hard-coded values:
+Terraform manages the existing UI/API Web App, a dedicated Salesforce ingestion Function App on the same Windows App Service plan, Function host storage, a shared user-assigned managed identity, Log Analytics, workspace-based Application Insights, diagnostics, and least-privilege role assignments. Existing resource groups, App Service plans, and Azure AI Services accounts are referenced instead of recreated.
 
-```hcl
-# Example Terraform resource excerpt:
-resource "azurerm_windows_web_app" "ui" {
-  name                = var.app_service_name
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  service_plan_id     = data.azurerm_service_plan.plan.id
+The provider uses Azure AD authentication for state storage and Azure Storage operations. Both applications authenticate to Azure AI Services with managed identity; API keys are neither committed nor passed through the workflow. The existing Web App is adopted through a declarative Terraform `import` block.
 
-  site_config {
-    always_on = true
-    application_stack {
-      node_version = var.node_default_version
-    }
-  }
+The `terraform/bootstrap/` root creates the dedicated remote-state account/container, Microsoft Entra application and service principal, GitHub environment federated credential, and least-privilege deployment roles. Its outputs map directly to the GitHub `production` environment variables.
 
-  app_settings = {
-    "WEBSITE_NODE_DEFAULT_VERSION"  = var.node_default_version
-    "AZURE_AI_SERVICES_ENDPOINT"   = var.azure_ai_services_endpoint
-    "AZURE_CONTENT_SAFETY_ENDPOINT" = var.azure_content_safety_endpoint
-    "APP_SERVICE_PLAN"             = var.app_service_plan_name
-  }
-}
-```
+> **Scale limitation:** The configured shared Basic B1 plan is suitable for this POC but does not support autoscale and is not an architecture for sustained 100,000+ user traffic. For that target, configure a separate Premium v3 plan with multiple workers and autoscale before production rollout.
+
+The committed production values live in `config/production.tfvars.json`. To create another environment, copy `terraform/main.tfvars.json.example`, replace each placeholder, and pass the resulting file with `terraform plan -var-file=<path>`. Remote state values are loaded from a local/generated `backend.hcl` based on `terraform/backend.hcl.example`.
 
 ---
 
 ## 10. Configuration & Environment Variables
 
-Create a `.env` file in the project root:
+Configuration is split by concern:
 
-```env
-PORT=8080
-NODE_ENV=production
-APP_SERVICE_PLAN=caldova-showcase-plan (West US 2)
-AZURE_AI_SERVICES_ENDPOINT=https://foundry-myaacoub.cognitiveservices.azure.com/
-AZURE_CONTENT_SAFETY_ENDPOINT=https://foundry-myaacoub.cognitiveservices.azure.com/contentsafety
-```
+| File / source | Purpose |
+|---|---|
+| `config/app.json` | Non-secret runtime defaults such as request limits and reference links |
+| `config/production.tfvars.json` | Production Azure resource names, endpoints, runtime versions, tags, and CORS origins |
+| `terraform/backend.hcl` | Generated or local remote-state settings; ignored by Git |
+| GitHub `production` environment variables | OIDC identity and Terraform state backend coordinates |
+| `local.settings.json` | Local Function App settings; ignored by Git |
+
+### Published Service URLs
+
+| Service | URL |
+|---|---|
+| Angular/Ionic UI and Express API | [https://ai-content-understanding-ui.azurewebsites.net](https://ai-content-understanding-ui.azurewebsites.net) |
+| Swagger UI | [https://ai-content-understanding-ui.azurewebsites.net/api-docs/](https://ai-content-understanding-ui.azurewebsites.net/api-docs/) |
+| Web App health | [https://ai-content-understanding-ui.azurewebsites.net/api/v1/health](https://ai-content-understanding-ui.azurewebsites.net/api/v1/health) |
+| Azure AI Services account | [https://foundry-myaacoub.cognitiveservices.azure.com/](https://foundry-myaacoub.cognitiveservices.azure.com/) |
+| Content Understanding API base | [https://foundry-myaacoub.cognitiveservices.azure.com/contentunderstanding/](https://foundry-myaacoub.cognitiveservices.azure.com/contentunderstanding/) |
+| Content Safety API base | [https://foundry-myaacoub.cognitiveservices.azure.com/contentsafety/](https://foundry-myaacoub.cognitiveservices.azure.com/contentsafety/) |
+| Salesforce ingestion Function App | Emitted after provisioning as Terraform outputs `function_app_url` and `function_health_endpoint_url` |
+
+Configure these GitHub environment variables from repository or organization configuration:
+
+- `AZURE_CLIENT_ID`
+- `AZURE_TENANT_ID`
+- `AZURE_SUBSCRIPTION_ID`
+- `TF_BACKEND_RESOURCE_GROUP`
+- `TF_BACKEND_STORAGE_ACCOUNT`
+- `TF_BACKEND_CONTAINER`
+- `TF_BACKEND_KEY`
+
+The federated deployment identity requires permissions to manage the resources in the target resource group and create role assignments. Protect the `production` GitHub environment with required reviewers. No Azure client secret is required.
 
 ---
 
@@ -413,6 +436,7 @@ AZURE_CONTENT_SAFETY_ENDPOINT=https://foundry-myaacoub.cognitiveservices.azure.c
 - Node.js >= 20.x
 - Python >= 3.10 (with `reportlab` and `pypdf`)
 - Azure CLI (`az`)
+- Terraform >= 1.9
 
 ### 2. Install Dependencies & Generate Scenarios
 ```bash
@@ -433,18 +457,28 @@ npm start
 # Swagger Docs: http://localhost:8080/api-docs/
 ```
 
-### 5. Deploy to Azure App Service
+### 5. Validate Infrastructure Locally
+
 ```powershell
-# 1. Package into deploy-package.zip
-python scripts/create_deploy_zip.py
-
-# 2. Deploy via Azure CLI OneDeploy
-az webapp deployment source config-zip --resource-group m365-myaacoub --name ai-content-understanding-ui --src deploy-package.zip
-
-# 3. Verify Health Check and Swagger
-curl.exe -i https://ai-content-understanding-ui.azurewebsites.net/api/v1/health
-curl.exe -i https://ai-content-understanding-ui.azurewebsites.net/api-docs/
+Set-Location terraform
+Copy-Item backend.hcl.example backend.hcl
+terraform init -backend-config=backend.hcl
+terraform fmt -check -recursive
+terraform validate
+terraform plan -var-file=../config/production.tfvars.json
 ```
+
+Replace the placeholders in `backend.hcl` before initialization. Do not commit this file.
+
+### 6. Deploy with GitHub Actions
+
+1. Configure the `production` GitHub environment variables listed above.
+2. Add a federated credential for this repository and environment to the Microsoft Entra application represented by `AZURE_CLIENT_ID`.
+3. Require reviewer approval on the `production` environment.
+4. Manually run **Deploy production** after the environment configuration is complete.
+5. The workflow tests and builds all application components, validates and applies Terraform, deploys both ZIP packages, and verifies both health endpoints.
+
+The **Validate solution** workflow runs application tests/build and Terraform formatting/validation for pull requests and non-default branches. Production deployment is manual-only to prevent unreviewed infrastructure changes from being applied on push.
 
 ---
 

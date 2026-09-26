@@ -4,12 +4,17 @@
  */
 
 const axios = require('axios');
+const createAzureCredential = require('./azureCredential');
 
 class ContentSafetyClient {
-  constructor(endpoint, apiKey) {
+  constructor(endpoint, credential) {
     this.endpoint = endpoint || process.env.AZURE_CONTENT_SAFETY_ENDPOINT || process.env.AZURE_AI_SERVICES_ENDPOINT;
-    this.apiKey = apiKey || process.env.AZURE_CONTENT_SAFETY_KEY || process.env.AZURE_AI_SERVICES_KEY;
+    this.credential = credential || createAzureCredential();
     this.apiVersion = '2024-09-01';
+
+    if (!this.endpoint) {
+      throw new Error('AZURE_CONTENT_SAFETY_ENDPOINT or AZURE_AI_SERVICES_ENDPOINT is required.');
+    }
   }
 
   /**
@@ -19,6 +24,7 @@ class ContentSafetyClient {
    */
   async checkPromptShield(userPrompt, documents = []) {
     const url = `${this.endpoint.replace(/\/$/, '')}/contentsafety/text:shieldPrompt?api-version=${this.apiVersion}`;
+    const token = await this.credential.getToken('https://cognitiveservices.azure.com/.default');
 
     const payload = {
       userPrompt: userPrompt || '',
@@ -28,22 +34,14 @@ class ContentSafetyClient {
     try {
       const response = await axios.post(url, payload, {
         headers: {
-          'Ocp-Apim-Subscription-Key': this.apiKey,
+          Authorization: `Bearer ${token.token}`,
           'Content-Type': 'application/json'
         },
         timeout: 10000
       });
       return response.data;
     } catch (err) {
-      // Fallback heuristics simulation
-      const textToScan = (documents.join(' ') + ' ' + (userPrompt || '')).toLowerCase();
-      const attackDetected = /ignore|override|developer mode|bypass|jailbreak|disregard/i.test(textToScan);
-      return {
-        userPromptAnalysis: { attackDetected: false },
-        documentsAnalysis: documents.map(doc => ({
-          attackDetected: /ignore|override|developer mode|bypass|jailbreak|disregard/i.test(doc)
-        }))
-      };
+      throw new Error(`Prompt Shield analysis failed: ${err.message}`, { cause: err });
     }
   }
 
@@ -53,25 +51,19 @@ class ContentSafetyClient {
    */
   async analyzeText(text) {
     const url = `${this.endpoint.replace(/\/$/, '')}/contentsafety/text:analyze?api-version=2023-10-01`;
+    const token = await this.credential.getToken('https://cognitiveservices.azure.com/.default');
 
     try {
       const response = await axios.post(url, { text }, {
         headers: {
-          'Ocp-Apim-Subscription-Key': this.apiKey,
+          Authorization: `Bearer ${token.token}`,
           'Content-Type': 'application/json'
         },
         timeout: 10000
       });
       return response.data;
     } catch (err) {
-      return {
-        categoriesAnalysis: [
-          { category: 'Hate', severity: 0 },
-          { category: 'SelfHarm', severity: 0 },
-          { category: 'Sexual', severity: 0 },
-          { category: 'Violence', severity: /radar|military|itar/i.test(text) ? 4 : 0 }
-        ]
-      };
+      throw new Error(`Content Safety text analysis failed: ${err.message}`, { cause: err });
     }
   }
 }

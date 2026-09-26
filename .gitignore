@@ -8,6 +8,11 @@ deploy-package.zip
 .terraform/
 *.tfstate
 *.tfstate.*
+*.tfplan
+terraform/backend.hcl
+terraform/main.tfvars.json
+terraform/bootstrap/backend.hcl
+terraform/bootstrap/bootstrap.tfvars.json
 .env
 frontend/dist/
 frontend/.angular/

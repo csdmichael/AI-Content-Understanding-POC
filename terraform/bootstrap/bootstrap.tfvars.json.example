@@ -1,0 +1,18 @@
+{
+  "subscription_id": "<azure-subscription-id>",
+  "tenant_id": "<microsoft-entra-tenant-id>",
+  "resource_group_name": "<existing-resource-group-name>",
+  "location": "<azure-region>",
+  "storage_account_name": "<globally-unique-state-storage-name>",
+  "container_name": "<state-container-name>",
+  "state_key": "<application-state-key>",
+  "github_organization": "<github-organization>",
+  "github_repository": "<github-repository>",
+  "github_environment": "<github-environment>",
+  "application_display_name": "<entra-application-display-name>",
+  "tags": {
+    "Project": "<project-tag>",
+    "Environment": "<environment-tag>",
+    "ManagedBy": "Terraform"
+  }
+}

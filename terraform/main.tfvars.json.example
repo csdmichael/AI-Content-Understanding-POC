@@ -1,0 +1,29 @@
+{
+  "subscription_id": "<azure-subscription-id>",
+  "tenant_id": "<microsoft-entra-tenant-id>",
+  "resource_group_name": "<existing-resource-group-name>",
+  "location": "<azure-region>",
+  "app_service_plan_name": "<existing-windows-app-service-plan-name>",
+  "app_service_name": "<existing-web-app-name>",
+  "name_prefix": "<caf-compatible-name-prefix>",
+  "environment": "production",
+  "azure_ai_services_endpoint": "https://<ai-services-account>.cognitiveservices.azure.com/",
+  "azure_ai_services_resource_id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<account-name>",
+  "azure_content_safety_endpoint": "https://<ai-services-account>.cognitiveservices.azure.com/",
+  "node_version": "~20",
+  "function_runtime_version": "~4",
+  "storage_account_tier": "Standard",
+  "storage_replication_type": "LRS",
+  "log_analytics_sku": "PerGB2018",
+  "log_retention_days": 30,
+  "allowed_origins": [
+    "https://<web-app-name>.azurewebsites.net"
+  ],
+  "health_check_path": "/api/v1/health",
+  "function_health_check_path": "/api/health",
+  "health_check_eviction_time_in_min": 10,
+  "tags": {
+    "Project": "<project-tag>",
+    "Owner": "<owner-tag>"
+  }
+}
